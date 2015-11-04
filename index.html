@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8"/>
+	<title>CC--</title>
+	<meta name="description" content="Alert Logic Customer Care Dashboard" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" type="text/css" media="screen" href="assets/css/fonts.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="assets/css/default.css" />
+	<script src="assets/libs/angular.min.js"></script>
+	<script src="assets/libs/angular-route.min.js"></script>
+	<script src="app/alccDash.js"></script>
+</head>
+<body ng-app="alccDash">
+	<nav>Dashboard | Scorecards</nav>
+	<main ng-view>
+		<menu type="channels" label="">
+			<menuitem class="emergency-red">All Channels</menuitem>
+			<menuitem class="green active">Customer Care</menuitem>
+			<menuitem class="yellow">Active Watch</menuitem>
+			<menuitem class="red">NOC Level 1</menuitem>
+			<menuitem class="warning-red">WSM</menuitem>
+		</menu>
+		<h1>Channel Name</h1>
+		<section>
+			<!--
+			<canvas id="channelGraph" />
+			-->
+			<img src="assets/img/" id="channelGraph" />
+		</section>
+	</main>
+</body>
+</html>
