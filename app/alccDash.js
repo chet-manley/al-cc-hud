@@ -1,6 +1,10 @@
-(function (window, undefined) {
+(function (window, angular, undefined) {
 	'use strict';
-	angular.module('alccDash', ['ngRoute'])
+	/* create our app module */
+	angular.module('alccDash', ['ngRoute']);
+	
+	/* create our app routes */
+	angular.module('alccDash')
 		.config(function ($routeProvider) {
 			$routeProvider
 				.when('/', {
@@ -9,8 +13,8 @@
 				.when('/dashboard/:channel', {
 					templateUrl: 'app/components/dashboard/dashboard.htm'
 				})
-				.when('/scorecard/:cardname', {
-					templateUrl: 'app/components/scorecard/scorecard.htm'
+				.when('/scorecards/:type', {
+					templateUrl: 'app/components/scorecards/scorecards.htm'
 				});
 		});
-}(window || this));
+}(window || this, angular));

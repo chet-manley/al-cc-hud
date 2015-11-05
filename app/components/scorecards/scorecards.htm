@@ -1,0 +1,33 @@
+<div ng-controller="scorecards as scorecardCtrl">
+	<h1>Scorecard For:</h1>
+	<form class="controls" action="#">
+		<input type="text" placeholder="name" />
+		<input type="date" />
+		<input type="date" />
+		<input type="button" value="search" />
+	</form>
+	<table class="scorecard">
+		<thead>
+			<tr>
+				<th>Key Performance Indicator</th>
+				<th>Weight</th>
+				<th>Goal</th>
+				<th>Result This Week</th>
+				<th>Result Week 1</th>
+				<th>Result Week 2</th>
+				<th>Result Week 3</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="row in scorecardCtrl.scorecard">
+				<td>{{row.kpi}}</td>
+				<td>{{row.weight}}</td>
+				<td>{{row.goal}}</td>
+				<td>{{row.results[0]}}</td>
+				<td>{{row.results[1]}}</td>
+				<td>{{row.results[2]}}</td>
+				<td>{{row.results[3]}}</td>
+			</tr>
+		</tbody>
+</table>
+</div>

@@ -10,6 +10,7 @@
 	<script src="assets/libs/angular.min.js"></script>
 	<script src="assets/libs/angular-route.min.js"></script>
 	<script src="app/alccDash.js"></script>
+	<script src="app/components/scorecards/scorecards.controller.js"></script>
 </head>
 <body ng-app="alccDash">
 	<nav>
@@ -18,13 +19,12 @@
 			<li>
 				<a>Scorecards</a>
 				<ul>
-					<li><a href="#/scorecard/individual">Individual</a></li>
-					<li><a href="#/scorecard/team">Team</a></li>
-					<li><a href="#/scorecard/channel">Channel</a></li>
+					<li><a href="#/scorecards/individual">Individual</a></li>
+					<li><a href="#/scorecards/department">Department</a></li>
 				</ul>
 			</li>
 		</ul>
 	</nav>
-	<main ng-view />
+	<main ng-view></main>
 </body>
 </html>
