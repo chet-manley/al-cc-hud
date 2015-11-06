@@ -1,32 +1,27 @@
 <div ng-controller="scorecards as scorecardCtrl">
-	<h1>Scorecard For:</h1>
 	<form class="controls" action="#">
-		<input type="text" placeholder="name" />
-		<input type="date" />
-		<input type="date" />
+		<label for="scorecardName">Scorecard For:</label>
+		<input type="text" id="scorecardName" placeholder="{{scorecardCtrl.type}}" />
+		<select ng-model="myOptions" ng-change="scorecardCtrl.optUpdate(myOptions)" ng-options="opt for opt in scorecardCtrl.scorecard.options">
+			<option value="">--Select Time--</option>
+		</select>
 		<input type="button" value="search" />
 	</form>
 	<table class="scorecard">
 		<thead>
 			<tr>
-				<th>Key Performance Indicator</th>
-				<th>Weight</th>
-				<th>Goal</th>
-				<th>Result This Week</th>
-				<th>Result Week 1</th>
-				<th>Result Week 2</th>
-				<th>Result Week 3</th>
+				<th ng-repeat="header in scorecardCtrl.scorecard.headers">{{header}}</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="row in scorecardCtrl.scorecard">
-				<td>{{row.kpi}}</td>
-				<td>{{row.weight}}</td>
-				<td>{{row.goal}}</td>
-				<td>{{row.results[0]}}</td>
-				<td>{{row.results[1]}}</td>
-				<td>{{row.results[2]}}</td>
-				<td>{{row.results[3]}}</td>
+			<tr ng-repeat="row in scorecardCtrl.scorecard.rows">
+				<td class="bold">{{row.kpi}}</td>
+				<td class="percentage">{{row.weight}}</td>
+				<td class="percentage">{{row.goal}}</td>
+				<td class="percentage">{{row.results[0]}}</td>
+				<td class="percentage">{{row.results[1]}}</td>
+				<td class="percentage">{{row.results[2]}}</td>
+				<td class="percentage">{{row.results[3]}}</td>
 			</tr>
 		</tbody>
 </table>
