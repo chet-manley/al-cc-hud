@@ -13,8 +13,10 @@
 				.when('/dashboard/:channel', {
 					templateUrl: 'app/components/dashboard/dashboard.htm'
 				})
-				.when('/scorecards/:type', {
-					templateUrl: 'app/components/scorecards/scorecards.htm'
+				.when('/scorecards/:type/:id', {
+					templateUrl: 'app/components/scorecards/scorecards.htm',
+					controller: 'scorecards',
+					controllerAs: 'ctrl'
 				});
 		});
 }(window || this, angular));

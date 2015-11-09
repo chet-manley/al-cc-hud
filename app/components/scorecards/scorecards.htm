@@ -1,20 +1,19 @@
-<div ng-controller="scorecards as scorecardCtrl">
-	<form class="controls" action="#">
+<form class="controls" action="#">
 		<label for="scorecardName">Scorecard For:</label>
-		<input type="text" id="scorecardName" placeholder="{{scorecardCtrl.type}}" />
-		<select ng-model="myOptions" ng-change="scorecardCtrl.optUpdate(myOptions)" ng-options="opt for opt in scorecardCtrl.scorecard.options">
-			<option value="">--Select Time--</option>
+		<input type="text" id="scorecardName" placeholder="{{ctrl.cardType}}" />
+		<select ng-model="timeOption" ng-change="ctrl.optUpdate(timeOption)" ng-options="opt for opt in ctrl.timeOptions">
+			<option value="" disabled selected hidden>--Select Time--</option>
 		</select>
 		<input type="button" value="search" />
 	</form>
 	<table class="scorecard">
 		<thead>
 			<tr>
-				<th ng-repeat="header in scorecardCtrl.scorecard.headers">{{header}}</th>
+				<th ng-repeat="header in ctrl.table.headers">{{header}}</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="row in scorecardCtrl.scorecard.rows">
+			<tr ng-repeat="row in ctrl.table.rows">
 				<td class="bold">{{row.kpi}}</td>
 				<td class="percentage">{{row.weight}}</td>
 				<td class="percentage">{{row.goal}}</td>
@@ -25,4 +24,3 @@
 			</tr>
 		</tbody>
 </table>
-</div>
