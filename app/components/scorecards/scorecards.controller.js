@@ -12,6 +12,7 @@
 					table.headers = scorecard.headers.week;
 				}
 			};
+		console.log($routeParams);
 		
 		// build table data
 		table.headers = scorecard.headers.week;

@@ -1,26 +1,26 @@
 <form class="controls" action="#">
-		<label for="scorecardName">Scorecard For:</label>
-		<input type="text" id="scorecardName" placeholder="{{ctrl.cardType}}" />
-		<select ng-model="timeOption" ng-change="ctrl.optUpdate(timeOption)" ng-options="opt for opt in ctrl.timeOptions">
-			<option value="" disabled selected hidden>--Select Time--</option>
-		</select>
-		<input type="button" value="search" />
-	</form>
-	<table class="scorecard">
-		<thead>
-			<tr>
-				<th ng-repeat="header in ctrl.table.headers">{{header}}</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="row in ctrl.table.rows">
-				<td class="bold">{{row.kpi}}</td>
-				<td class="percentage">{{row.weight}}</td>
-				<td class="percentage">{{row.goal}}</td>
-				<td class="percentage">{{row.results[0]}}</td>
-				<td class="percentage">{{row.results[1]}}</td>
-				<td class="percentage">{{row.results[2]}}</td>
-				<td class="percentage">{{row.results[3]}}</td>
-			</tr>
-		</tbody>
+	<label for="scorecardName">Scorecard For:</label>
+	<input type="text" id="scorecardName" placeholder="{{ctrl.cardType}}" />
+	<select ng-model="timeOption" ng-change="ctrl.optUpdate(timeOption)" ng-options="opt for opt in ctrl.timeOptions">
+		<option value="" disabled selected hidden>--Select Time--</option>
+	</select>
+	<input type="button" value="search" />
+</form>
+<table class="scorecard">
+	<thead>
+		<tr>
+			<th ng-repeat="header in ctrl.table.headers">{{header}}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="row in ctrl.table.rows">
+			<td class="bold">{{row.kpi}}</td>
+			<td class="percentage">{{row.weight}}</td>
+			<td class="percentage">{{row.goal}}</td>
+			<td class="percentage">{{row.results[0]}}</td>
+			<td class="percentage">{{row.results[1]}}</td>
+			<td class="percentage">{{row.results[2]}}</td>
+			<td class="percentage">{{row.results[3]}}</td>
+		</tr>
+	</tbody>
 </table>
