@@ -1,7 +1,7 @@
 (function (window, angular, undefined) {
 	'use strict';
 	/* create our app module */
-	angular.module('alccDash', ['ngRoute']);
+	angular.module('alccDash', ['ngRoute', 'chart.js']);
 	
 	/* create our app routes */
 	angular.module('alccDash')
@@ -13,7 +13,7 @@
 				.when('/dashboard/:channel', {
 					templateUrl: 'app/components/dashboard/dashboard.htm'
 				})
-				.when('/scorecards/:type/:id', {
+				.when('/scorecards/:type', {
 					templateUrl: 'app/components/scorecards/scorecards.htm',
 					controller: 'scorecards',
 					controllerAs: 'ctrl'
