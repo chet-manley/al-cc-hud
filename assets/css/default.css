@@ -142,6 +142,9 @@ menu[type="channels"] menuitem {
 		inset 0 6px 6px rgba(200,200,255,0.4),
 		inset 0 -4px 8px rgba(0,0,25,0.35);
 	background: rgba(100,100,100,0.7);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 	transition: background, left;
 	transition-duration: 500ms;
 }
@@ -267,12 +270,15 @@ menu[type="channels"] .emergency-red::before {
 	overflow: hidden;
 	text-align: left;
 }
-.scorecard thead {
+.scorecard thead, .scorecard tfoot {
 	background: linear-gradient(#777, #444);
 	color: #FFF;
 	text-shadow: 0 1px 0 #000;
 }
-.scorecard th {
+.scorecard tfoot td:first-child {
+	text-align: right;
+}
+.scorecard th, .scorecard tfoot td {
 	border-top: 1px solid #555;
 	border-right: 1px solid #777;
 	border-bottom: 1px solid #333;
@@ -330,7 +336,7 @@ menu[type="channels"] .emergency-red::before {
 	content: '';
 	height: 5000px;
 	left: 0;
-	/*  */
+	/* prevent column highlight from blocking content */
 	pointer-events: none;
 	position: absolute;
 	top: -2500px;

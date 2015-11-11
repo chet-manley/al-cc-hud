@@ -12,15 +12,19 @@
 			<th ng-repeat="header in ctrl.table.headers">{{header}}</th>
 		</tr>
 	</thead>
+	<tfoot>
+		<tr>
+			<td class="bold" colspan="2">Total:</td>
+			<td ng-class="{percentage: ctrl.table.footer.goals.standard}">{{ctrl.table.footer.goals.standard}}</td>
+			<td ng-repeat="result in ctrl.table.footer.results track by $index">{{result}}</td>
+		</tr>
+	</tfoot>
 	<tbody>
 		<tr ng-repeat="row in ctrl.table.rows">
 			<td class="bold">{{row.kpi}}</td>
-			<td class="percentage">{{row.weight}}</td>
-			<td class="percentage">{{row.goal}}</td>
-			<td class="percentage">{{row.results[0]}}</td>
-			<td class="percentage">{{row.results[1]}}</td>
-			<td class="percentage">{{row.results[2]}}</td>
-			<td class="percentage">{{row.results[3]}}</td>
+			<td ng-class="{percentage: row.weight}">{{row.weight}}</td>
+			<td ng-class="{percentage: row.goals.standard !== '-'}">{{row.goals.standard}}</td>
+			<td ng-class="{percentage: result !== '-', red: result <= row.goals.low, green: result >= row.goals.high}" ng-repeat="result in row.results track by $index">{{result}}</td>
 		</tr>
 	</tbody>
 </table>

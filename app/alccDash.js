@@ -8,10 +8,12 @@
 		.config(function ($routeProvider) {
 			$routeProvider
 				.when('/', {
-					templateUrl: 'app/components/dashboard/dashboard.htm'
+					redirectTo: '/dashboard/all'
 				})
-				.when('/dashboard/:channel', {
-					templateUrl: 'app/components/dashboard/dashboard.htm'
+				.when('/dashboard/:channelId', {
+					templateUrl: 'app/components/dashboard/dashboard.htm',
+					controller: 'dashboard',
+					controllerAs: 'ctrl'
 				})
 				.when('/scorecards/:type', {
 					templateUrl: 'app/components/scorecards/scorecards.htm',
