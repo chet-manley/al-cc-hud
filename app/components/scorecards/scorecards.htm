@@ -1,11 +1,15 @@
-<form class="controls" action="#">
+<form class="controls" ng-submit="ctrl.getScorecard()">
 	<label for="scorecardName">Scorecard For:</label>
-	<input type="text" id="scorecardName" placeholder="{{ctrl.cardType}}" />
-	<select ng-model="timeOption" ng-change="ctrl.optUpdate(timeOption)" ng-options="opt for opt in ctrl.timeOptions">
+	<!--
+	<input type="text" id="scorecardName" placeholder="{{ctrl.cardType}}" autocomplete ng-model="textList" required />
+-->
+	<autosuggest-input as-data="ctrl.controls.autosuggest"></autosuggest-input>
+	<select ng-model="ctrl.controls.timeOption" ng-options="opt for opt in ctrl.controls.times" required>
 		<option value="" disabled selected hidden>--Select Time--</option>
 	</select>
-	<input type="button" value="search" />
+	<input type="submit" value="Retrieve" />
 </form>
+<h1>{{ctrl.controls.autosuggest.nameText}}</h1>
 <table class="scorecard">
 	<thead>
 		<tr>
@@ -15,7 +19,7 @@
 	<tfoot>
 		<tr>
 			<td class="bold" colspan="2">Total:</td>
-			<td ng-class="{percentage: ctrl.table.footer.goals.standard}">{{ctrl.table.footer.goals.standard}}</td>
+			<td class="percentage">{{ctrl.table.footer.goals.standard}}</td>
 			<td ng-repeat="result in ctrl.table.footer.results track by $index">{{result}}</td>
 		</tr>
 	</tfoot>
@@ -24,7 +28,7 @@
 			<td class="bold">{{row.kpi}}</td>
 			<td ng-class="{percentage: row.weight}">{{row.weight}}</td>
 			<td ng-class="{percentage: row.goals.standard !== '-'}">{{row.goals.standard}}</td>
-			<td ng-class="{percentage: result !== '-', red: result <= row.goals.low, green: result >= row.goals.high}" ng-repeat="result in row.results track by $index">{{result}}</td>
+			<td ng-class="{percentage: result !== '-', low: result <= row.goals.low, high: result >= row.goals.high}" ng-repeat="result in row.results track by $index">{{result}}</td>
 		</tr>
 	</tbody>
 </table>

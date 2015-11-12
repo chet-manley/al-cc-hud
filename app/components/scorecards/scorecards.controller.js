@@ -3,15 +3,9 @@
 	/* create controller */
 	function ScorecardsController($routeParams, data) {
 		var ctrl = this,
-			scorecard = data.scorecard.individual.read(),
-			table = {},
-			optUpdate = function optUpdate(opt) {
-				if (opt === 'Monthly') {
-					table.headers = scorecard.headers.month;
-				} else {
-					table.headers = scorecard.headers.week;
-				}
-			},
+			cardType = $routeParams.type,
+			table,
+			controls,
 			calculateTotals = function calculateTotals(rows) {
 				var i,
 					len = rows[0].results.length,
@@ -25,19 +19,44 @@
 					totals.push(column.toFixed(1));
 				}
 				return totals;
+			},
+			updateTableData = function updateTableData(data) {
+				ctrl.table = data;
+			},
+			buildTableData = function buildTableData() {
+				table.footer.results = calculateTotals(table.rows);
+			},
+			getScorecard = function getScorecard() {
+				table = data.scorecard[cardType].read(
+					ctrl.controls.autosuggest.nameText,
+					ctrl.controls.timeOption
+				);
+				buildTableData();
+				updateTableData(table);
 			};
-		// build table data
-		table.headers = scorecard.headers.week;
-		table.rows = scorecard.rows;
-		table.footer = scorecard.footer;
-		table.footer.results = calculateTotals(scorecard.rows);
+		// build control data
+		controls = data.scorecard.controls[cardType]();
+		controls.timeOption = '';
+		controls.autosuggest = {
+			id: 'scorecardName',
+			placeholder: cardType,
+			nameText: '',
+			names: controls.names
+		};
+		
+		// build header data
+		
+		
+		// build our table with initial fake data
+		table = data.scorecard[cardType].read('name', 'weekly');
+		buildTableData();
 		
 		// assign properties and methods to controller
-		ctrl.cardType = $routeParams.type;
-		ctrl.timeOptions = scorecard.options;
-		ctrl.optUpdate = optUpdate;
+		ctrl.cardType = cardType;
+		ctrl.controls = controls;
 		ctrl.table = table;
-		console.log('ScorecardsController', ctrl);
+		ctrl.getScorecard = getScorecard;
+		//console.log('ScorecardsController', ctrl);
 	}
 	/* add controller */
 	angular.module('alccDash')

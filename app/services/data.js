@@ -77,37 +77,60 @@
 			}
 		};
 		svc.scorecard = {
+			// dynamic scorecard search control data
+			controls: {
+				individual: function getIndividuals() {
+					return {
+						names: [
+							'Shelton Jenkins',
+							'Samuel King',
+							'Josh Gardner',
+							'Matthew Moreno',
+							'Suzanne Thompson'
+						],
+						times: [
+							'Weekly',
+							'Monthly'
+						]
+					};
+				},
+				team: function getTeams() {
+					return {
+						names: [
+							'team 1',
+							'team 2',
+							'team 3',
+							'team 4'
+						],
+						times: [
+							'Weekly',
+							'Monthly'
+						]
+					};
+				},
+				department: function getDepartments() {
+					return {
+						names: [
+							'Customer Care',
+							'NOC',
+							'SOC',
+							'TOC',
+							'WSM'
+						],
+						times: [
+							'Weekly',
+							'Monthly'
+						]
+					};
+				}
+			},
 			individual: {
 				// CRUD
 				create: function create() {
 					
-				}, // END create
-				read: function read() {
-					return {
-						options: [
-							'Weekly',
-							'Monthly'
-						],
-						headers: {
-							week: [
-								'Key Performance Indicator',
-								'Weight',
-								'Goal',
-								'Result Nov. 8-14',
-								'Result Nov. 1-7',
-								'Result Oct. 25-31',
-								'Result Oct. 18-24'
-							],
-							month: [
-								'Key Performance Indicator',
-								'Weight',
-								'Goal',
-								'Result Nov.',
-								'Result Oct.',
-								'Result Sep.',
-								'Result Aug.'
-							]
-						},
+				}, // END individual create
+				read: function read(name, time) {
+					var data = {
 						rows: [
 							{
 								kpi: 'First Touch Resolve',
@@ -164,157 +187,215 @@
 							}
 						}
 					};
-				}, // END read
+					data.headers = time.toLowerCase() === 'weekly'
+						? [
+							'Key Performance Indicator',
+							'Weight',
+							'Goal',
+							'Result Nov. 8-14',
+							'Result Nov. 1-7',
+							'Result Oct. 25-31',
+							'Result Oct. 18-24'
+						]
+						: [
+							'Key Performance Indicator',
+							'Weight',
+							'Goal',
+							'Result Nov.',
+							'Result Oct.',
+							'Result Sep.',
+							'Result Aug.'
+						];
+					return data;
+				}, // END individual read
 				update: function update() {
 
-				}, // END update
+				}, // END individual update
 				del: function del() {
 
-				} // END delete
+				} // END individual delete
 			}, // END 'individual' CRUD routes
 			team: {
 				// CRUD
 				create: function create() {
 					
-				}, // END create
-				read: function read() {
-					return {
-						options: [
-							'Weekly',
-							'Monthly'
-						],
-						headers: {
-							week: [
-								'Key Performance Indicator',
-								'Weight',
-								'Goal',
-								'Result Nov. 8-14',
-								'Result Nov. 1-7',
-								'Result Oct. 25-31',
-								'Result Oct. 18-24'
-							],
-							month: [
-								'Key Performance Indicator',
-								'Weight',
-								'Goal',
-								'Result Nov.',
-								'Result Oct.',
-								'Result Sep.',
-								'Result Aug.'
-							]
-						},
+				}, // END team create
+				read: function read(name, time) {
+					var data = {
 						rows: [
 							{
 								kpi: 'First Touch Resolve',
 								weight: 25,
-								goal: 90,
-								results: randGen(80, 100, 4)
+								goals: {
+									standard: 90,
+									high: 95,
+									low: 70
+								},
+								results: randGen(60, 100, 4)
 							},
 							{
 								kpi: 'Case/Call Assessment',
 								weight: 15,
-								goal: 95,
-								results: randGen(90, 100, 4)
+								goals: {
+									standard: 95,
+									high: 97,
+									low: 75
+								},
+								results: randGen(70, 100, 4)
 							},
 							{
 								kpi: 'Efficiency',
 								weight: 25,
-								goal: 0,
+								goals: {
+									standard: 0
+								},
 								results: randGen(50, 100, 4)
 							},
 							{
 								kpi: 'Agent Satisfaction',
 								weight: 15,
-								goal: 85,
-								results: randGen(75, 100, 4)
+								goals: {
+									standard: 85,
+									high: 90,
+									low: 70
+								},
+								results: randGen(60, 100, 4)
 							},
 							{
 								kpi: 'Customer Satisfaction',
 								weight: 20,
-								goal: 90,
-								results: randGen(80, 100, 4)
+								goals: {
+									standard: 90,
+									high: 95,
+									low: 70
+								},
+								results: randGen(60, 100, 4)
 							}
-						]
+						],
+						footer: {
+							goals: {
+								standard: 90
+							}
+						}
 					};
-				}, // END read
+					data.headers = time.toLowerCase() === 'weekly'
+						? [
+							'Key Performance Indicator',
+							'Weight',
+							'Goal',
+							'Result Nov. 8-14',
+							'Result Nov. 1-7',
+							'Result Oct. 25-31',
+							'Result Oct. 18-24'
+						]
+						: [
+							'Key Performance Indicator',
+							'Weight',
+							'Goal',
+							'Result Nov.',
+							'Result Oct.',
+							'Result Sep.',
+							'Result Aug.'
+						];
+					return data;
+				}, // END team read
 				update: function update() {
 
-				}, // END update
+				}, // END team update
 				del: function del() {
 
-				} // END delete
+				} // END team delete
 			}, // END 'team' CRUD routes
 			department: {
 				// CRUD
 				create: function create() {
 					
-				}, // END create
-				read: function read() {
-					return {
-						options: [
-							'Weekly',
-							'Monthly'
-						],
-						headers: {
-							week: [
-								'Key Performance Indicator',
-								'Weight',
-								'Goal',
-								'Result Nov. 8-14',
-								'Result Nov. 1-7',
-								'Result Oct. 25-31',
-								'Result Oct. 18-24'
-							],
-							month: [
-								'Key Performance Indicator',
-								'Weight',
-								'Goal',
-								'Result Nov.',
-								'Result Oct.',
-								'Result Sep.',
-								'Result Aug.'
-							]
-						},
+				}, // END department create
+				read: function read(name, time) {
+					var data = {
 						rows: [
 							{
 								kpi: 'First Touch Resolve',
 								weight: 25,
-								goal: 90,
-								results: randGen(80, 100, 4)
+								goals: {
+									standard: 90,
+									high: 95,
+									low: 70
+								},
+								results: randGen(60, 100, 4)
 							},
 							{
 								kpi: 'Case/Call Assessment',
 								weight: 15,
-								goal: 95,
-								results: randGen(90, 100, 4)
+								goals: {
+									standard: 95,
+									high: 97,
+									low: 75
+								},
+								results: randGen(70, 100, 4)
 							},
 							{
 								kpi: 'Efficiency',
 								weight: 25,
-								goal: 0,
+								goals: {
+									standard: 0
+								},
 								results: randGen(50, 100, 4)
 							},
 							{
 								kpi: 'Agent Satisfaction',
 								weight: 15,
-								goal: 85,
-								results: randGen(75, 100, 4)
+								goals: {
+									standard: 85,
+									high: 90,
+									low: 70
+								},
+								results: randGen(60, 100, 4)
 							},
 							{
 								kpi: 'Customer Satisfaction',
 								weight: 20,
-								goal: 90,
-								results: randGen(80, 100, 4)
+								goals: {
+									standard: 90,
+									high: 95,
+									low: 70
+								},
+								results: randGen(60, 100, 4)
 							}
-						]
+						],
+						footer: {
+							goals: {
+								standard: 90
+							}
+						}
 					};
-				}, // END read
+					data.headers = time.toLowerCase() === 'weekly'
+						? [
+							'Key Performance Indicator',
+							'Weight',
+							'Goal',
+							'Result Nov. 8-14',
+							'Result Nov. 1-7',
+							'Result Oct. 25-31',
+							'Result Oct. 18-24'
+						]
+						: [
+							'Key Performance Indicator',
+							'Weight',
+							'Goal',
+							'Result Nov.',
+							'Result Oct.',
+							'Result Sep.',
+							'Result Aug.'
+						];
+					return data;
+				}, // END department read
 				update: function update() {
 
-				}, // END update
+				}, // END department update
 				del: function del() {
 
-				} // END delete
+				} // END department delete
 			} // END 'department' CRUD routes
 		}; // END scorecard routes
 		

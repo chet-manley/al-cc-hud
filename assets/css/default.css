@@ -192,7 +192,6 @@ menu[type="channels"] .emergency-red::before {
 }
 
 /* angular-chart */
-
 .chart-legend,
 .bar-legend,
 .line-legend,
@@ -258,8 +257,45 @@ menu[type="channels"] .emergency-red::before {
 	font-size: 130%
 }
 .controls input, .controls select {
-	height: 30px;
-	padding: 0 5px;
+	height: 2em;
+	padding: 0 10px;
+}
+/**-/ FIX: Chrome 1px jog /-**/
+.controls select {
+	position: relative;
+	top: 1px;
+}
+/* autosuggest menu */
+autosuggest-input {
+	display: inline-block;
+	position: relative;
+}
+.suggestions-list {
+	list-style-type: none;
+	position: absolute;
+	padding: 0;
+	width: 100%;
+	/* required to clear content */
+	z-index: 1;
+}
+.suggestions-list li {
+	background: #F9F9F9;
+	border-bottom: 1px solid #EEEEEE;
+	color: #000000;
+	cursor: pointer;
+	padding: 5px 10px;
+	text-align: left;
+}
+.suggestions-list li:hover {
+	background: #EEEEEE;
+}
+.suggestions-list li:active,
+.suggestions-list li.active {
+	color: #FFFFFF;
+	background: #0099FF;
+}
+.suggestions-list:focus{
+	outline:none;
 }
 /* scorecard table */
 .scorecard {
@@ -311,12 +347,6 @@ menu[type="channels"] .emergency-red::before {
 .scorecard tr:nth-child(even) {
 	background: #F1F1F1;
 }
-.scorecard td.red {
-	background: rgba(150,0,0,0.5);
-}
-.scorecard td.green {
-	background: rgba(0,150,0,0.5);
-}
 .scorecard tbody tr:hover {
 	background-image: linear-gradient(
 		180deg,
@@ -341,4 +371,10 @@ menu[type="channels"] .emergency-red::before {
 	position: absolute;
 	top: -2500px;
 	width: 100%;
+}
+.scorecard .low {
+	background: rgba(150,0,0,0.5);
+}
+.scorecard .high {
+	background: rgba(0,150,0,0.5);
 }
