@@ -2,7 +2,7 @@
 	<menuitem class="emergency-red">All Channels</menuitem>
 	<menuitem ng-repeat="channel in ctrl.channels">{{channel.name}}</menuitem>
 </menu>
-<h1>Channel Name</h1>
+<h1>{{ctrl.header}}</h1>
 <section>
 	<canvas id="channelGraph" chart-line />
 </section>

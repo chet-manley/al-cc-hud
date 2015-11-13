@@ -131,63 +131,69 @@
 				}, // END individual create
 				read: function read(name, time) {
 					var data = {
-						rows: [
-							{
-								kpi: 'First Touch Resolve',
-								weight: 25,
-								goals: {
-									standard: 90,
-									high: 95,
-									low: 70
+						metadata: {
+							name: name,
+							timeframe: time
+						},
+						scorecard: {
+							rows: [
+								{
+									kpi: 'First Touch Resolve',
+									weight: 25,
+									goals: {
+										standard: 90,
+										high: 95,
+										low: 70
+									},
+									results: randGen(60, 100, 4)
 								},
-								results: randGen(60, 100, 4)
-							},
-							{
-								kpi: 'Case/Call Assessment',
-								weight: 15,
-								goals: {
-									standard: 95,
-									high: 97,
-									low: 75
+								{
+									kpi: 'Case/Call Assessment',
+									weight: 15,
+									goals: {
+										standard: 95,
+										high: 97,
+										low: 75
+									},
+									results: randGen(70, 100, 4)
 								},
-								results: randGen(70, 100, 4)
-							},
-							{
-								kpi: 'Efficiency',
-								weight: 25,
-								goals: {
-									standard: 0
+								{
+									kpi: 'Efficiency',
+									weight: 25,
+									goals: {
+										standard: 0
+									},
+									results: randGen(50, 100, 4)
 								},
-								results: randGen(50, 100, 4)
-							},
-							{
-								kpi: 'Agent Satisfaction',
-								weight: 15,
-								goals: {
-									standard: 85,
-									high: 90,
-									low: 70
+								{
+									kpi: 'Agent Satisfaction',
+									weight: 15,
+									goals: {
+										standard: 85,
+										high: 90,
+										low: 70
+									},
+									results: randGen(60, 100, 4)
 								},
-								results: randGen(60, 100, 4)
-							},
-							{
-								kpi: 'Customer Satisfaction',
-								weight: 20,
+								{
+									kpi: 'Customer Satisfaction',
+									weight: 20,
+									goals: {
+										standard: 90,
+										high: 95,
+										low: 70
+									},
+									results: randGen(60, 100, 4)
+								}
+							],
+							footer: {
 								goals: {
-									standard: 90,
-									high: 95,
-									low: 70
-								},
-								results: randGen(60, 100, 4)
-							}
-						],
-						footer: {
-							goals: {
-								standard: 90
+									standard: 90
+								}
 							}
 						}
 					};
-					data.headers = time.toLowerCase() === 'weekly'
+					data.scorecard.headers = time.toLowerCase() === 'weekly'
 						? [
 							'Key Performance Indicator',
 							'Weight',
@@ -222,63 +228,69 @@
 				}, // END team create
 				read: function read(name, time) {
 					var data = {
-						rows: [
-							{
-								kpi: 'First Touch Resolve',
-								weight: 25,
-								goals: {
-									standard: 90,
-									high: 95,
-									low: 70
+						metadata: {
+							name: name,
+							timeframe: time
+						},
+						scorecard: {
+							rows: [
+								{
+									kpi: 'First Touch Resolve',
+									weight: 25,
+									goals: {
+										standard: 90,
+										high: 95,
+										low: 70
+									},
+									results: randGen(60, 100, 4)
 								},
-								results: randGen(60, 100, 4)
-							},
-							{
-								kpi: 'Case/Call Assessment',
-								weight: 15,
-								goals: {
-									standard: 95,
-									high: 97,
-									low: 75
+								{
+									kpi: 'Case/Call Assessment',
+									weight: 15,
+									goals: {
+										standard: 95,
+										high: 97,
+										low: 75
+									},
+									results: randGen(70, 100, 4)
 								},
-								results: randGen(70, 100, 4)
-							},
-							{
-								kpi: 'Efficiency',
-								weight: 25,
-								goals: {
-									standard: 0
+								{
+									kpi: 'Efficiency',
+									weight: 25,
+									goals: {
+										standard: 0
+									},
+									results: randGen(50, 100, 4)
 								},
-								results: randGen(50, 100, 4)
-							},
-							{
-								kpi: 'Agent Satisfaction',
-								weight: 15,
-								goals: {
-									standard: 85,
-									high: 90,
-									low: 70
+								{
+									kpi: 'Agent Satisfaction',
+									weight: 15,
+									goals: {
+										standard: 85,
+										high: 90,
+										low: 70
+									},
+									results: randGen(60, 100, 4)
 								},
-								results: randGen(60, 100, 4)
-							},
-							{
-								kpi: 'Customer Satisfaction',
-								weight: 20,
+								{
+									kpi: 'Customer Satisfaction',
+									weight: 20,
+									goals: {
+										standard: 90,
+										high: 95,
+										low: 70
+									},
+									results: randGen(60, 100, 4)
+								}
+							],
+							footer: {
 								goals: {
-									standard: 90,
-									high: 95,
-									low: 70
-								},
-								results: randGen(60, 100, 4)
-							}
-						],
-						footer: {
-							goals: {
-								standard: 90
+									standard: 90
+								}
 							}
 						}
 					};
-					data.headers = time.toLowerCase() === 'weekly'
+					data.scorecard.headers = time.toLowerCase() === 'weekly'
 						? [
 							'Key Performance Indicator',
 							'Weight',
@@ -313,63 +325,69 @@
 				}, // END department create
 				read: function read(name, time) {
 					var data = {
-						rows: [
-							{
-								kpi: 'First Touch Resolve',
-								weight: 25,
-								goals: {
-									standard: 90,
-									high: 95,
-									low: 70
+						metadata: {
+							name: name,
+							timeframe: time
+						},
+						scorecard: {
+							rows: [
+								{
+									kpi: 'First Touch Resolve',
+									weight: 25,
+									goals: {
+										standard: 90,
+										high: 95,
+										low: 70
+									},
+									results: randGen(60, 100, 4)
 								},
-								results: randGen(60, 100, 4)
-							},
-							{
-								kpi: 'Case/Call Assessment',
-								weight: 15,
-								goals: {
-									standard: 95,
-									high: 97,
-									low: 75
+								{
+									kpi: 'Case/Call Assessment',
+									weight: 15,
+									goals: {
+										standard: 95,
+										high: 97,
+										low: 75
+									},
+									results: randGen(70, 100, 4)
 								},
-								results: randGen(70, 100, 4)
-							},
-							{
-								kpi: 'Efficiency',
-								weight: 25,
-								goals: {
-									standard: 0
+								{
+									kpi: 'Efficiency',
+									weight: 25,
+									goals: {
+										standard: 0
+									},
+									results: randGen(50, 100, 4)
 								},
-								results: randGen(50, 100, 4)
-							},
-							{
-								kpi: 'Agent Satisfaction',
-								weight: 15,
-								goals: {
-									standard: 85,
-									high: 90,
-									low: 70
+								{
+									kpi: 'Agent Satisfaction',
+									weight: 15,
+									goals: {
+										standard: 85,
+										high: 90,
+										low: 70
+									},
+									results: randGen(60, 100, 4)
 								},
-								results: randGen(60, 100, 4)
-							},
-							{
-								kpi: 'Customer Satisfaction',
-								weight: 20,
+								{
+									kpi: 'Customer Satisfaction',
+									weight: 20,
+									goals: {
+										standard: 90,
+										high: 95,
+										low: 70
+									},
+									results: randGen(60, 100, 4)
+								}
+							],
+							footer: {
 								goals: {
-									standard: 90,
-									high: 95,
-									low: 70
-								},
-								results: randGen(60, 100, 4)
-							}
-						],
-						footer: {
-							goals: {
-								standard: 90
+									standard: 90
+								}
 							}
 						}
 					};
-					data.headers = time.toLowerCase() === 'weekly'
+					data.scorecard.headers = time.toLowerCase() === 'weekly'
 						? [
 							'Key Performance Indicator',
 							'Weight',

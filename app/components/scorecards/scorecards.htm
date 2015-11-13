@@ -1,5 +1,5 @@
-<form class="controls" ng-submit="ctrl.getScorecard()">
-	<label for="scorecardName">Scorecard For:</label>
+<form class="controls" name="scorecardControl" ng-submit="ctrl.controls.action()">
+	<label for="scorecardName">Find Scorecard:</label>
 	<!--
 	<input type="text" id="scorecardName" placeholder="{{ctrl.cardType}}" autocomplete ng-model="textList" required />
 -->
@@ -7,10 +7,10 @@
 	<select ng-model="ctrl.controls.timeOption" ng-options="opt for opt in ctrl.controls.times" required>
 		<option value="" disabled selected hidden>--Select Time--</option>
 	</select>
-	<input type="submit" value="Retrieve" />
+	<input type="submit" value="Retrieve" ng-disabled="scorecardControl.$invalid" />
 </form>
-<h1>{{ctrl.controls.autosuggest.nameText}}</h1>
-<table class="scorecard">
+<h1 class="capitalized centered">{{ctrl.header}}</h1>
+<table class="scorecard" ng-show="ctrl.table">
 	<thead>
 		<tr>
 			<th ng-repeat="header in ctrl.table.headers">{{header}}</th>
@@ -18,9 +18,10 @@
 	</thead>
 	<tfoot>
 		<tr>
-			<td class="bold" colspan="2">Total:</td>
+			<td></td>
+			<td class="bold">Total</td>
 			<td class="percentage">{{ctrl.table.footer.goals.standard}}</td>
-			<td ng-repeat="result in ctrl.table.footer.results track by $index">{{result}}</td>
+			<td ng-repeat="result in ctrl.table.footer.results track by $index" ng-class="{percentage: result}">{{result}}</td>
 		</tr>
 	</tfoot>
 	<tbody>

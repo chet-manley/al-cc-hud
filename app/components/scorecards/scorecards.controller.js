@@ -4,8 +4,7 @@
 	function ScorecardsController($routeParams, data) {
 		var ctrl = this,
 			cardType = $routeParams.type,
-			table,
-			controls,
+			scorecard,
 			calculateTotals = function calculateTotals(rows) {
 				var i,
 					len = rows[0].results.length,
@@ -20,44 +19,58 @@
 				}
 				return totals;
 			},
-			updateTableData = function updateTableData(data) {
-				ctrl.table = data;
+			getScorecard = function getScorecard(name, time) {
+				// cache scorecard
+				scorecard = data.scorecard[cardType].read(name, time);
+				return scorecard;
 			},
-			buildTableData = function buildTableData() {
+			updateHeader = function updateHeader(text) {
+				var header = scorecard.metadata || {};
+				header = header.name + ' ' + header.timeframe + ' Report';
+				ctrl.header = text || header;
+			},
+			updateTable = function updateTable() {
+				var table = scorecard.scorecard;
 				table.footer.results = calculateTotals(table.rows);
+				ctrl.table = table;
 			},
-			getScorecard = function getScorecard() {
-				table = data.scorecard[cardType].read(
-					ctrl.controls.autosuggest.nameText,
-					ctrl.controls.timeOption
-				);
-				buildTableData();
-				updateTableData(table);
+			doQuery = function doQuery(name, time) {
+				name = name || ctrl.controls.autosuggest.nameText;
+				time = time || ctrl.controls.timeOption;
+				getScorecard(name, time);
+				updateTable();
+				updateHeader();
+			},
+			getControls = function getControls() {
+				var controls = data.scorecard.controls[cardType]();
+				return {
+					times: controls.times,
+					timeOption: '',
+					autosuggest: {
+						id: 'scorecardName',
+						placeholder: cardType,
+						nameText: '',
+						names: controls.names
+					},
+					action: doQuery
+				};
+			},
+			init = function init() {
+				// assign properties and methods to controller
+				ctrl.cardType = cardType;
+				// get control data
+				ctrl.controls = getControls();
+				// build header data
+				ctrl.header = 'Please select a scorecard';
+				// build our table with initial fake data
+				//doQuery(cardType, 'weekly');
 			};
-		// build control data
-		controls = data.scorecard.controls[cardType]();
-		controls.timeOption = '';
-		controls.autosuggest = {
-			id: 'scorecardName',
-			placeholder: cardType,
-			nameText: '',
-			names: controls.names
-		};
 		
-		// build header data
-		
-		
-		// build our table with initial fake data
-		table = data.scorecard[cardType].read('name', 'weekly');
-		buildTableData();
-		
-		// assign properties and methods to controller
-		ctrl.cardType = cardType;
-		ctrl.controls = controls;
-		ctrl.table = table;
-		ctrl.getScorecard = getScorecard;
+		// this controller auto-inits
+		init();
 		//console.log('ScorecardsController', ctrl);
 	}
+	ScorecardsController.$inject = ['$routeParams', 'data'];
 	/* add controller */
 	angular.module('alccDash')
 		.controller('scorecards', ScorecardsController);

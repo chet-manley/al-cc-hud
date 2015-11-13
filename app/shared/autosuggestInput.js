@@ -2,10 +2,7 @@
 	'use strict';
 	/* create directive */
 	function autosuggestInput() {
-		var getScorecard = function getScorecard() {
-				//console.log('Performing search for: ');
-			},
-			Controller = function Controller(data) {
+		var Controller = function Controller() {
 				var ctrl = this,
 					resetSuggestions = function resetSuggestions() {
 						ctrl.suggestions = [];
@@ -21,7 +18,7 @@
 							i = 0,
 							maxSuggestions = 5;
 						resetSuggestions();
-						
+
 						while (i < len && ctrl.suggestions.length < maxSuggestions) {
 							if (list[i].toLowerCase().indexOf(text) !== -1) {
 								ctrl.suggestions.push(list[i]);
@@ -59,10 +56,7 @@
 				ctrl.findSuggestions = findSuggestions;
 				ctrl.selectSuggestion = selectSuggestion;
 				ctrl.checkKeyDown = checkKeyDown;
-				
-				console.log(ctrl);
 			};
-		Controller.$inject = ['data'];
 		
 		return {
 			restrict: 'AE',

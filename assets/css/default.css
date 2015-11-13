@@ -19,6 +19,8 @@ h2 {font-size: 125%;}
 h3 {font-size: 110%;}
 h4 {font-size: 100%;}
 .bold {font-weight: 700;}
+.centered {text-align: center;}
+.capitalized {text-transform: capitalize;}
 .percentage::after {content:'%';}
 
 /* special text styling */
@@ -148,15 +150,15 @@ menu[type="channels"] menuitem {
 	transition: background, left;
 	transition-duration: 500ms;
 }
-menu[type="channels"] menuitem:hover {
-	left: 20px;
-	cursor: pointer;
-	background: rgba(0,100,200,0.5);
-}
 menu[type="channels"] menuitem.active {
 	left: 20px;
 	cursor: default;
 	background: rgba(0,0,200,0.5);
+}
+menu[type="channels"] menuitem:hover {
+	left: 20px;
+	cursor: pointer;
+	background: rgba(0,100,200,0.5);
 }
 /* indicator */
 menu[type="channels"] menuitem::before {
@@ -254,7 +256,7 @@ menu[type="channels"] .emergency-red::before {
 .controls label {
 	font-family: Play,sans-serif;
 	font-weight: 700;
-	font-size: 130%
+	font-size: 115%
 }
 .controls input, .controls select {
 	height: 2em;
@@ -301,47 +303,57 @@ autosuggest-input {
 .scorecard {
 	background: #F5F5F5;
 	border-spacing: 0;
-	box-shadow: inset 0 1px 0 #FFF;
+	box-shadow: inset 0 1px 0 #FFFFFF;
 	margin: 20px auto;
 	overflow: hidden;
+	resize: both;
 	text-align: left;
 }
 .scorecard thead, .scorecard tfoot {
-	background: linear-gradient(#777, #444);
-	color: #FFF;
-	text-shadow: 0 1px 0 #000;
+	background: linear-gradient(#777777, #444444);
+	color: #FFFFFF;
+	text-shadow: 0 1px 0 #000000;
+}
+.scorecard tfoot td {
+	color: #000000;
+	padding: 10px 15px;
+	position: relative;
 }
 .scorecard tfoot td:first-child {
 	text-align: right;
+	padding-right: 20px;
 }
-.scorecard th, .scorecard tfoot td {
-	border-top: 1px solid #555;
-	border-right: 1px solid #777;
-	border-bottom: 1px solid #333;
-	border-left: 1px solid #555;
-	box-shadow: inset 0 1px 0 #999;
+.scorecard th {
+	border-top: 1px solid #555555;
+	border-right: 1px solid #777777;
+	border-bottom: 1px solid #333333;
+	border-left: 1px solid #555555;
+	box-shadow: inset 0 1px 0 #999999;
 	padding: 10px 15px;
 	position: relative;
 }
 .scorecard th:first-child {
-	border-left: 1px solid #777;	
-	box-shadow: inset 1px 1px 0 #999;
+	border-left: 1px solid #777777;
+	box-shadow: inset 1px 1px 0 #999999;
 }
 .scorecard th:last-child {
-	box-shadow: inset -1px 1px 0 #999;
+	box-shadow: inset -1px 1px 0 #999999;
 }
-.scorecard td {
-	border-top: 1px solid #FFF;
-	border-right: 1px solid #FFF;
+.scorecard tbody td {
+	border-top: 1px solid #FFFFFF;
+	border-right: 1px solid #FFFFFF;
 	border-bottom: 1px solid #E8E8E8;
 	border-left: 1px solid #E8E8E8;
-	color: #000;
+	color: #000000;
+}
+/* covers tbody and tfoot */
+.scorecard td {
 	height: 70px;
 	padding: 10px 15px;
 	position: relative;
 	text-align: center;
 }
-.scorecard td:first-child {
+.scorecard tbody td:first-child {
 	text-align: left;
 }
 .scorecard tr:nth-child(even) {
@@ -364,17 +376,17 @@ autosuggest-input {
 		rgba(150,150,150,0.25) 100%
 	);
 	content: '';
-	height: 5000px;
+	height: 2500px;
 	left: 0;
 	/* prevent column highlight from blocking content */
 	pointer-events: none;
 	position: absolute;
-	top: -2500px;
+	top: -1250px;
 	width: 100%;
 }
 .scorecard .low {
-	background: rgba(150,0,0,0.5);
+	background: rgba(250,0,0,0.20);
 }
 .scorecard .high {
-	background: rgba(0,150,0,0.5);
+	background: rgba(0,250,0,0.15);
 }
