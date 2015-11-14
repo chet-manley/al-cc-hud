@@ -150,15 +150,27 @@ menu[type="channels"] menuitem {
 	transition: background, left;
 	transition-duration: 500ms;
 }
+menu[type="channels"] menuitem:hover {
+	left: 20px;
+	cursor: pointer;
+	background: rgba(0,100,200,0.5);
+}
+/* must come after :hover to prevent hover styles */
 menu[type="channels"] menuitem.active {
 	left: 20px;
 	cursor: default;
 	background: rgba(0,0,200,0.5);
 }
-menu[type="channels"] menuitem:hover {
-	left: 20px;
-	cursor: pointer;
-	background: rgba(0,100,200,0.5);
+menu[type="channels"] menuitem a {
+	color: #FFFFFF;
+	display: block;
+	overflow: hidden;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+menu[type="channels"] menuitem.active a:hover {
+	cursor: default;
 }
 /* indicator */
 menu[type="channels"] menuitem::before {

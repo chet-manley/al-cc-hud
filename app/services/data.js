@@ -39,6 +39,10 @@
 				return {
 					channels: [
 						{
+							name: 'All Channels',
+							id: 'all'
+						},
+						{
 							name: 'Customer Care',
 							id: '12345'
 						},
@@ -57,11 +61,11 @@
 					]
 				};
 			},
-			chart: function chart(method) {
+			graph: function graph(method) {
 				// GET
 				if (!method || method.toLowerCase() === 'get') {
 					return {
-						chart: {
+						graph: {
 							labels: [
 
 							],
@@ -77,7 +81,7 @@
 			}
 		};
 		svc.scorecard = {
-			// dynamic scorecard search control data
+			// dynamic scorecard control data
 			controls: {
 				individual: function getIndividuals() {
 					return {
@@ -124,6 +128,7 @@
 					};
 				}
 			},
+			// view scorecard data routes
 			individual: {
 				// CRUD
 				create: function create() {

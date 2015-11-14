@@ -1,33 +1,57 @@
 (function (angular, undefined) {
 	'use strict';
 	/* create controller */
-	function DashboardController($routeParams, data) {
+	function DashboardController($routeParams, data, $location) {
 		var ctrl = this,
-			channelId = $routeParams.channelId,
-			chart = data.dashboard.chart().chart,
-			channels = data.dashboard.channels().channels,
+			findChannelName = function findChannelName(id) {
+				var channel;
+				ctrl.channels.some(function (v) {
+					if (v.id === id) {
+						channel = v.name;
+						return true;
+					}
+					return false;
+				});
+				return channel || 'Invalid Channel ID';
+			},
 			chartUpdate = function chartUpdate(opt) {
 				
 			},
 			updateHeader = function updateHeader(text) {
-				var header = text || channelId;
-				ctrl.header = text || header;
+				var header = text || ctrl.channel.name;
+				ctrl.header = header;
+			},
+			changeChannel = function changeChannel(newChannel) {
+				// cache new channel
+				ctrl.channel.id = newChannel.id;
+				ctrl.channel.name = newChannel.name || findChannelName(newChannel.id);
+				// update the header
+				updateHeader(newChannel.name);
+				// update the URL
+				//$location.search('channelId', newChannel.id);
 			},
 			init = function init() {
-				// assign properties and methods to controller
-				ctrl.channelId = channelId;
-				ctrl.header = 'All Channels';
+				// assign properties and methods to controller //
+				// retrieve channel list
+				ctrl.channels = data.dashboard.channels().channels;
+				// current channel object
+				ctrl.channel = {
+					id: $routeParams.channelId || 'all',
+					name: findChannelName($routeParams.channelId || 'all')
+				};
+				// retrieve graph data
+				ctrl.graph = data.dashboard.graph().graph;
+				// set header
+				updateHeader();
+				// public methods
+				ctrl.changeChannel = changeChannel;
 			};
-		
-		ctrl.channels = channels;
-		ctrl.chartUpdate = chartUpdate;
-		ctrl.chart = chart;
 		
 		// this controller auto-inits
 		init();
 		console.log('DashboardController', ctrl);
 	}
-	DashboardController.$inject = ['$routeParams', 'data'];
+	DashboardController.$inject = ['$routeParams', 'data', '$location'];
 	/* add controller */
 	angular.module('alccDash')
 		.controller('dashboard', DashboardController);

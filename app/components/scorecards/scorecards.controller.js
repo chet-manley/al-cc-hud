@@ -56,7 +56,7 @@
 				};
 			},
 			init = function init() {
-				// assign properties and methods to controller
+				// assign properties and methods to controller //
 				ctrl.cardType = cardType;
 				// get control data
 				ctrl.controls = getControls();

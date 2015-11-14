@@ -1,8 +1,13 @@
 <menu type="channels" label="">
-	<menuitem class="emergency-red">All Channels</menuitem>
-	<menuitem ng-repeat="channel in ctrl.channels">{{channel.name}}</menuitem>
+	<menuitem ng-repeat="channel in ctrl.channels" data-channel-id="{{channel.id}}" ng-class="{active: channel.id === ctrl.channel.id}">
+		<a ng-href="#/dashboard/{{channel.id}}">{{channel.name}}</a>	
+		<!--
+		<a ng-click="ctrl.changeChannel(channel)">{{channel.name}}</a>
+		-->
+	</menuitem>
 </menu>
-<h1>{{ctrl.header}}</h1>
+<h1 class="capitalized">{{ctrl.header}}</h1>
 <section>
 	<canvas id="channelGraph" chart-line />
+	<chart-line></chart-line>
 </section>
