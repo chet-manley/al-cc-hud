@@ -1,4 +1,4 @@
-<input type="text" id="{{autosuggestCtrl.asData.id}}" placeholder="{{autosuggestCtrl.asData.placeholder}}" ng-model="autosuggestCtrl.asData.nameText" ng-change="autosuggestCtrl.findSuggestions()" ng-keydown="autosuggestCtrl.checkKeyDown($event)" autocomplete="off" required />
+<input type="text" id="{{autosuggestCtrl.asData.id}}" placeholder="{{autosuggestCtrl.asData.placeholder}}" ng-model="autosuggestCtrl.asData.nameText" ng-change="autosuggestCtrl.findSuggestions()" ng-keydown="autosuggestCtrl.checkChange($event)" ng-blur="autosuggestCtrl.hideSuggestions()" autocomplete="off" required />
 <ul class="suggestions-list">
 	<li ng-repeat="suggestion in autosuggestCtrl.suggestions track by $index" ng-class="{active: autosuggestCtrl.selectedIndex === $index}" ng-click="autosuggestCtrl.selectSuggestion($index)">{{suggestion}}</li>
 </ul>

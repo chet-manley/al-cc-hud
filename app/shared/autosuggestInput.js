@@ -1,7 +1,7 @@
 (function (angular, undefined) {
 	'use strict';
 	/* create directive */
-	function autosuggestInput() {
+	function autosuggestInput($timeout) {
 		var Controller = function Controller() {
 				var ctrl = this,
 					resetSuggestions = function resetSuggestions() {
@@ -27,35 +27,42 @@
 						}
 					},
 					selectSuggestion = function selectSuggestion(i) {
+						if (!ctrl.suggestions[i]) {return resetSuggestions(); }
 						ctrl.asData.nameText = ctrl.suggestions[i];
 						return resetSuggestions();
 					},
-					checkKeyDown = function checkKeyDown(event) {
-						// arrow down, increment selectedIndex
-						if (event.keyCode === 40) {
-							event.preventDefault();
-							if (ctrl.selectedIndex + 1 !== ctrl.suggestions.length) {
-								ctrl.selectedIndex++;
+					hideSuggestions = function hideSuggestions() {
+						// timeout required to allow suggestion click before object tear-down
+						$timeout(resetSuggestions, 250);
+					},
+					checkChange = function checkChange(event) {
+						if (event.type === 'keydown') {
+							// arrow down, increment selectedIndex
+							if (event.keyCode === 40) {
+								event.preventDefault();
+								if (ctrl.selectedIndex + 1 !== ctrl.suggestions.length) {
+									ctrl.selectedIndex++;
+								}
+							// arrow up, decrement selectedIndex
+							} else if (event.keyCode === 38) {
+								event.preventDefault();
+								if (ctrl.selectedIndex - 1 > -1) {
+									ctrl.selectedIndex--;
+								}
+							// enter, empty suggestions array
+							} else if (event.keyCode === 13) {
+								event.preventDefault();
+								selectSuggestion(ctrl.selectedIndex);
 							}
-						// arrow up, decrement selectedIndex
-						} else if (event.keyCode === 38) {
-							event.preventDefault();
-							if (ctrl.selectedIndex - 1 > -1) {
-								ctrl.selectedIndex--;
-							}
-						// enter, empty suggestions array
-						} else if (event.keyCode === 13) {
-							event.preventDefault();
-							selectSuggestion(ctrl.selectedIndex);
-							resetSuggestions();
-						}
+						} // END keydown events
 					};
 				
 				ctrl.suggestions = [];
 				ctrl.selectedIndex = -1;
 				ctrl.findSuggestions = findSuggestions;
 				ctrl.selectSuggestion = selectSuggestion;
-				ctrl.checkKeyDown = checkKeyDown;
+				ctrl.hideSuggestions = hideSuggestions;
+				ctrl.checkChange = checkChange;
 			};
 		
 		return {
@@ -69,6 +76,7 @@
 			controllerAs: 'autosuggestCtrl'
 		};
 	}
+	autosuggestInput.$inject = ['$timeout'];
 	/* add directive */
 	angular.module('alccDash')
 		.directive('autosuggestInput', autosuggestInput);
