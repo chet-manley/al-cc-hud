@@ -163,7 +163,15 @@
 									results: randGen(70, 100, 4)
 								},
 								{
-									kpi: 'Efficiency',
+									kpi: 'Agent Efficiency',
+									weight: 25,
+									goals: {
+										standard: 0
+									},
+									results: randGen(50, 100, 4)
+								},
+								{
+									kpi: 'Agent Utilization',
 									weight: 25,
 									goals: {
 										standard: 0
