@@ -21,7 +21,7 @@
 			<td></td>
 			<td class="bold">Total</td>
 			<td class="percentage">{{ctrl.table.footer.goals.standard}}</td>
-			<td ng-repeat="result in ctrl.table.footer.results track by $index" ng-class="{percentage: result}">{{result}}</td>
+			<td ng-repeat="result in ctrl.table.footer.results track by $index" ng-class="{percentage: result, high: result >= ctrl.table.footer.goals.high, low: result <= ctrl.table.footer.goals.low}">{{result}}</td>
 		</tr>
 	</tfoot>
 	<tbody>
@@ -29,7 +29,7 @@
 			<td class="bold">{{row.kpi}}</td>
 			<td ng-class="{percentage: row.weight}">{{row.weight}}</td>
 			<td ng-class="{percentage: row.goals.standard !== '-'}">{{row.goals.standard}}</td>
-			<td ng-class="{percentage: result !== '-', low: result <= row.goals.low, high: result >= row.goals.high}" ng-repeat="result in row.results track by $index">{{result}}</td>
+			<td ng-class="{percentage: result !== '-', high: result >= row.goals.high, low: result <= row.goals.low}" ng-repeat="result in row.results track by $index">{{result}}</td>
 		</tr>
 	</tbody>
 </table>

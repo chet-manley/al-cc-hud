@@ -9,13 +9,28 @@
 				var i,
 					len = rows[0].results.length,
 					column,
-					totals = [];
+					totals = {goals: {}, results: []};
 				for (i = 0; i < len; i = i + 1) {
+					// results
 					column = 0;
 					rows.forEach(function (row) {
 						column += row.results[i] * (row.weight / 100);
 					});
-					totals.push(column.toFixed(1));
+					totals.results.push(Number(column.toFixed(1)));
+					// goals
+					if (i + 1 === len) {
+						column = 0;
+						rows.forEach(function (row) {
+							column += row.goals.standard * (row.weight / 100);
+						});
+						// Explicitly coerce to number
+						column = Number(column.toFixed(1));
+						totals.goals = {
+							standard: column,
+							high: column + 5,
+							low: column - 5
+						};
+					}
 				}
 				return totals;
 			},
@@ -30,8 +45,11 @@
 				ctrl.header = text || header;
 			},
 			updateTable = function updateTable() {
-				var table = scorecard.scorecard;
-				table.footer.results = calculateTotals(table.rows);
+				var table = scorecard.scorecard,
+					totals = calculateTotals(table.rows);
+				table.footer.results = totals.results;
+				table.footer.goals = totals.goals;
+				console.log(table.footer);
 				ctrl.table = table;
 			},
 			doQuery = function doQuery(name, time) {
