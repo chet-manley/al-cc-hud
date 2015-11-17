@@ -67,13 +67,23 @@
 					return {
 						graph: {
 							labels: [
-
+								'Label 1',
+								'Label 2',
+								'Label 3',
+								'Label 4',
+								'Label 5',
+								'Label 6',
+								'Label 7'
 							],
 							series: [
-
+								'Series A',
+								'Series B',
+								'Series C'
 							],
 							data: [
-
+								randGen(10, 100, 7),
+								randGen(10, 100, 7),
+								randGen(10, 100, 7)
 							]
 						}
 					};
