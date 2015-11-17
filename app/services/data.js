@@ -164,17 +164,21 @@
 								},
 								{
 									kpi: 'Agent Efficiency',
-									weight: 25,
+									weight: 15,
 									goals: {
-										standard: 0
+										standard: 90,
+										high: 95,
+										low: 85
 									},
 									results: randGen(50, 100, 4)
 								},
 								{
 									kpi: 'Agent Utilization',
-									weight: 25,
+									weight: 10,
 									goals: {
-										standard: 0
+										standard: 90,
+										high: 95,
+										low: 85
 									},
 									results: randGen(50, 100, 4)
 								},
@@ -201,7 +205,9 @@
 							],
 							footer: {
 								goals: {
-									standard: 90
+									standard: 90,
+									high: 95,
+									low: 85
 								}
 							}
 						}
