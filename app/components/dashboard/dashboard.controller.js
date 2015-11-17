@@ -1,7 +1,7 @@
 (function (angular, undefined) {
 	'use strict';
 	/* create controller */
-	function DashboardController($routeParams, data, $location) {
+	function DashboardController($routeParams, $location, data) {
 		var ctrl = this,
 			findChannelName = function findChannelName(id) {
 				var channel;
@@ -30,6 +30,9 @@
 				// update the URL
 				//$location.search('channelId', newChannel.id);
 			},
+			updateGraph = function updateGraph() {
+				
+			},
 			init = function init() {
 				// assign properties and methods to controller //
 				// retrieve channel list
@@ -39,19 +42,18 @@
 					id: $routeParams.channelId || 'all',
 					name: findChannelName($routeParams.channelId || 'all')
 				};
-				// retrieve graph data
-				ctrl.graph = data.dashboard.graph().graph;
+				// retrieve test graph data
+				ctrl.testGraph = data.dashboard.graph().graph;
 				// set header
 				updateHeader();
 				// public methods
 				ctrl.changeChannel = changeChannel;
 			};
-		
 		// this controller auto-inits
 		init();
 		console.log('DashboardController', ctrl);
 	}
-	DashboardController.$inject = ['$routeParams', 'data', '$location'];
+	DashboardController.$inject = ['$routeParams', '$location', 'data'];
 	/* add controller */
 	angular.module('alccDash')
 		.controller('dashboard', DashboardController);
