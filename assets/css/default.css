@@ -53,7 +53,7 @@ nav {
 		inset 0 5px 5px rgba(225,225,255,0.25),
 		inset 0 10px 10px rgba(200,200,255,0.3),
 		inset 0 -5px 10px rgba(0,0,25,0.25);
-	color: #DDD;
+	color: #DDDDDD;
 	cursor: default;
 	font-weight: 700;
 	left: 0;
@@ -114,17 +114,6 @@ main {
 }
 
 /* menu */
-menu[type="channels"] {
-	left: -45px;
-	margin: 0;
-	position: relative;
-}
-menu[type="channels"]::before {
-	color: #FFFFFF;
-	content: attr(label);
-	left: 25px;
-	position: relative;
-}
 menu[type="channels"] menuitem {
 	background: rgba(100,100,100,0.7);
 	border: 2px solid #505050;
@@ -148,13 +137,13 @@ menu[type="channels"] menuitem {
 	width: 150px;
 }
 menu[type="channels"] menuitem:hover {
-	left: 20px;
+	left: 0;
 	cursor: pointer;
 	background: rgba(0,100,200,0.5);
 }
 /* must come after :hover to prevent hover styles */
 menu[type="channels"] menuitem.active {
-	left: 20px;
+	left: 0;
 	cursor: default;
 	background: rgba(0,0,200,0.5);
 }
