@@ -1,6 +1,8 @@
-<h1 class="centered capitalized">{{ctrl.header}}</h1>
-<section layout="row" layout-align="start start" layout-wrap>
-	<menu flex="none" type="channels" label="">
+<header><h1 class="centered capitalized">{{ctrl.header}}</h1></header>
+
+<div layout="column" layout-gt-lg="row" layout-wrap>
+<md-content flex="none">
+	<menu layout="row" layout-gt-lg="column" layout-align="space-around start" layout-wrap type="channels" label="">
 		<menuitem ng-repeat="channel in ctrl.channels" data-channel-id="{{channel.id}}" ng-class="{active: channel.id === ctrl.channel.id}">
 			<a ng-href="#/dashboard/{{channel.id}}">{{channel.name}}</a>	
 			<!--
@@ -8,13 +10,24 @@
 			-->
 		</menuitem>
 	</menu>
-	<div flex class="graphs">
+</md-content>
+
+
+<section flex="50" layout="row" layout-gt-lg="column">
+	<md-card flex>
 		<canvas chart-line chart-legend="true" chart-labels="ctrl.testGraph.labels" chart-data="ctrl.testGraph.data" chart-series="ctrl.testGraph.series"></canvas>
-	</div>
-	<div flex class="graphs">
+	</md-card>
+	<md-card flex>
 		<canvas chart-line chart-legend="true" chart-labels="ctrl.testGraph.labels" chart-data="ctrl.testGraph.data" chart-series="ctrl.testGraph.series"></canvas>
-	</div>
-	<div flex="grow" class="graphs">
-		<canvas chart-line chart-legend="true" chart-labels="ctrl.testGraph.labels" chart-data="ctrl.testGraph.data" chart-series="ctrl.testGraph.series"></canvas>
-	</div>
+	</md-card>
 </section>
+<section flex="50" layout="row" layout-gt-lg="column">
+	<md-card flex>
+		<canvas chart-line chart-legend="true" chart-labels="ctrl.testGraph.labels" chart-data="ctrl.testGraph.data" chart-series="ctrl.testGraph.series"></canvas>
+	</md-card>
+	<md-card flex>
+		<canvas chart-line chart-legend="true" chart-labels="ctrl.testGraph.labels" chart-data="ctrl.testGraph.data" chart-series="ctrl.testGraph.series"></canvas>
+	</md-card>
+</section>
+
+</div>
