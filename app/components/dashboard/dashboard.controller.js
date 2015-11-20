@@ -3,51 +3,51 @@
 	/* create controller */
 	function DashboardController($routeParams, $location, data) {
 		var ctrl = this,
-			findChannelName = function findChannelName(id) {
-				var channel;
-				ctrl.channels.some(function (v) {
+			findTeamName = function findTeamName(id) {
+				var team;
+				ctrl.teams.some(function (v) {
 					if (v.id === id) {
-						channel = v.name;
+						team = v.name;
 						return true;
 					}
 					return false;
 				});
-				return channel || 'Invalid Channel ID';
+				return team || 'Invalid Team ID';
 			},
 			chartUpdate = function chartUpdate(opt) {
 				
 			},
 			updateHeader = function updateHeader(text) {
-				var header = text || ctrl.channel.name;
+				var header = text || ctrl.team.name;
 				ctrl.header = header;
 			},
-			changeChannel = function changeChannel(newChannel) {
-				// cache new channel
-				ctrl.channel.id = newChannel.id;
-				ctrl.channel.name = newChannel.name || findChannelName(newChannel.id);
+			changeTeam = function changeTeam(newTeam) {
+				// cache new team
+				ctrl.team.id = newTeam.id;
+				ctrl.team.name = newTeam.name || findTeamName(newTeam.id);
 				// update the header
-				updateHeader(newChannel.name);
+				updateHeader(newTeam.name);
 				// update the URL
-				//$location.search('channelId', newChannel.id);
+				$location.path('dashboard/' + newTeam.id);
 			},
 			updateGraph = function updateGraph() {
 				
 			},
 			init = function init() {
 				// assign properties and methods to controller //
-				// retrieve channel list
-				ctrl.channels = data.dashboard.channels().channels;
-				// current channel object
-				ctrl.channel = {
-					id: $routeParams.channelId || 'all',
-					name: findChannelName($routeParams.channelId || 'all')
+				// retrieve team list
+				ctrl.teams = data.dashboard.teams().teams;
+				// current team object
+				ctrl.team = {
+					id: $routeParams.teamId || 'all',
+					name: findTeamName($routeParams.teamId || 'all')
 				};
 				// retrieve test graph data
 				ctrl.testGraph = data.dashboard.graph().graph;
 				// set header
 				updateHeader();
 				// public methods
-				ctrl.changeChannel = changeChannel;
+				ctrl.changeTeam = changeTeam;
 			};
 		// this controller auto-inits
 		init();

@@ -1,12 +1,12 @@
-<header><h1 class="centered capitalized">{{ctrl.header}}</h1></header>
+<header class="center capitalize"><h1>{{ctrl.header}}</h1></header>
 
 <div layout="column" layout-gt-lg="row" layout-wrap>
 <section flex="none">
 	<menu layout="row" layout-gt-lg="column" layout-align="space-around start" layout-wrap type="channels" label="">
-		<menuitem ng-repeat="channel in ctrl.channels" data-channel-id="{{channel.id}}" ng-class="{active: channel.id === ctrl.channel.id}">
-			<a ng-href="#/dashboard/{{channel.id}}">{{channel.name}}</a>	
+		<menuitem ng-repeat="team in ctrl.teams" data-team-id="{{team.id}}">
+			<md-button class="md-raised" ng-disabled="team.id === ctrl.team.id" ng-click="ctrl.changeTeam(team)">{{team.name}}</md-button>
 			<!--
-			<a ng-click="ctrl.changeChannel(channel)">{{channel.name}}</a>
+			<a ng-href="#/dashboard/{{channel.id}}">{{channel.name}}</a>
 			-->
 		</menuitem>
 	</menu>

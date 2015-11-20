@@ -35,27 +35,27 @@
 		 */
 		svc.dashboard = {
 			// GET only
-			channels: function channels() {
+			teams: function teams() {
 				return {
-					channels: [
+					teams: [
 						{
-							name: 'All Channels',
+							name: 'All Teams',
 							id: 'all'
 						},
 						{
-							name: 'Customer Care',
+							name: 'Team 1',
 							id: '12345'
 						},
 						{
-							name: 'Active Watch',
+							name: 'Team 2',
 							id: '23456'
 						},
 						{
-							name: 'NOC Level 1 Case Queue',
+							name: 'Team 3',
 							id: '34567'
 						},
 						{
-							name: 'WSM Security Services Case Queue',
+							name: 'Extra Long Team Name 1',
 							id: '45678'
 						}
 					]

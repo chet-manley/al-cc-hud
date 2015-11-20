@@ -10,7 +10,7 @@
 				.when('/', {
 					redirectTo: '/dashboard'
 				})
-				.when('/dashboard/:channelId?', {
+				.when('/dashboard/:teamId?', {
 					templateUrl: 'app/components/dashboard/dashboard.htm',
 					controller: 'dashboard',
 					controllerAs: 'ctrl',
