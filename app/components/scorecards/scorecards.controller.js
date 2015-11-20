@@ -79,7 +79,7 @@
 				// get control data
 				ctrl.controls = getControls();
 				// build header data
-				ctrl.header = 'Please select a scorecard';
+				ctrl.header = 'Please select a scorecard to continue';
 				// build our table with initial fake data
 				//doQuery(cardType, 'weekly');
 			};
