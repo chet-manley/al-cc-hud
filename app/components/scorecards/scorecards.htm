@@ -1,15 +1,16 @@
-<form class="controls" name="scorecardControl" ng-submit="ctrl.controls.action()">
+<md-card layout="column" layout-align="center center" layout-margin>
+<form class="controls" name="scorecardControl" layout="row" layout-align="center center" ng-submit="ctrl.controls.action()">
 	<label for="scorecardName">Find Scorecard:</label>
-	<!--
-	<input type="text" id="scorecardName" placeholder="{{ctrl.cardType}}" autocomplete ng-model="textList" required />
--->
 	<autosuggest-input as-data="ctrl.controls.autosuggest"></autosuggest-input>
-	<select ng-model="ctrl.controls.timeOption" ng-options="opt for opt in ctrl.controls.times" required>
-		<option value="" disabled selected hidden>--Select Time--</option>
-	</select>
-	<input type="submit" value="Retrieve" ng-disabled="scorecardControl.$invalid" />
+	<md-input-container>
+		<label>Timeframe</label>
+		<md-select ng-model="ctrl.controls.timeOption" md-on-open="" required>
+			<md-option ng-repeat="time in ctrl.controls.times" value="{{time}}">{{time}}</md-option>
+		</md-select>
+	</md-input-container>
+	<md-button class="md-raised" ng-disabled="scorecardControl.$invalid" ng-click="ctrl.controls.action()">Retrieve</md-button>
 </form>
-<h1 class="capitalized centered">{{ctrl.header}}</h1>
+<h1 class="capitalize center">{{ctrl.header}}</h1>
 <table class="scorecard" ng-show="ctrl.table">
 	<thead>
 		<tr>
@@ -32,3 +33,4 @@
 		</tr>
 	</tbody>
 </table>
+</md-card>

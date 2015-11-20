@@ -13,14 +13,20 @@ h1, h2, h3, h4 {
 	font-family: Play,sans-serif;
 	font-weight: 700;
 }
-h1 {font-size: 140%;}
-h2 {font-size: 125%;}
-h3 {font-size: 110%;}
-h4 {font-size: 100%;}
+h1 {font-size: 150%;}
+h2 {font-size: 140%;}
+h3 {font-size: 130%;}
+h4 {font-size: 120%;}
 .bold {font-weight: 700;}
-.centered {text-align: center;}
-.capitalized {text-transform: capitalize;}
+.center {text-align: center;}
+.capitalize {text-transform: capitalize;}
+.small-caps {font-variant: small-caps;}
 .percentage::after {content:'%';}
+/* MD input lables */
+md-input-container label {
+	font-variant: small-caps;
+	text-transform: capitalize;
+}
 /* special text styling */
 .text-stroke-webkit {
 	text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
@@ -34,38 +40,22 @@ h4 {font-size: 100%;}
 
 /* app body */
 body {
-	background: #FFFFFF;
-	color: #000000;
 	font: normal normal 400 1em/1.2 Ubuntu,Arial,sans-serif;
 	position: absolute;
 }
 
 /* primary header navigation */
 nav {
-	background: rgba(60,70,80,0.95);
-	box-shadow: 
-		0 2px 7px rgba(0,0,0,0.25),
-		inset 0 1px rgba(255,255,255,0.2),
-		inset 0 5px 5px rgba(225,225,255,0.25),
-		inset 0 10px 10px rgba(200,200,255,0.3),
-		inset 0 -5px 10px rgba(0,0,25,0.25);
-	color: #DDDDDD;
 	cursor: default;
 	font-weight: 700;
-	left: 0;
-	padding: 0 10%;
-	position: relative;
+	padding: 0 5vw;
 	text-shadow: 1px 1px 1px rgba(25,25,25,0.5);
-	top: 0;
-	width: 100%;
-	z-index: 10;
 }
 nav ul {
 	cursor: default;
 	list-style-type: none;
 }
 nav ul li {
-	display: inline-block;
 	position: relative;
 	white-space: nowrap;
 }
@@ -77,85 +67,54 @@ nav a {
 	text-decoration: none;
 }
 nav li:hover {
-	background: rgb(60,70,80);
+	background: #323232;
 	color: #FFFFFF;
 }
 /* nav sub-menus */
-nav li > ul {
-	background: rgba(33,33,33,0.90);
+nav li > .submenu {
+	background: rgba(50,50,50,0.9);
 	display: none;
 	left: 0;
-	padding: 0 10%;
+	padding: 0 5vw;
 	position: fixed;
 	width: 100%;
 }
 nav li li:hover {
-	background: rgb(25,25,25);
+	background: #323232;
 }
 nav li:hover > ul {
-	display: block;
+	display: flex;
 }
 
 /** content injection point **/
 main {
-	margin: 10px 10%;
-	z-index: 1;
+	margin: 1vh 5vw;
 }
 
-/* menu */
-menu[type="channels"] menuitem {
-	background: rgba(100,100,100,0.7);
-	border: 2px solid #505050;
-	border-radius: 15px;
-	box-shadow: 
-		0 0 2px 2px rgba(100,100,100,0.25),
-		inset 0 1px rgba(255,255,255,0.3),
-		inset 0 3px 3px rgba(225,225,255,0.3),
-		inset 0 6px 6px rgba(200,200,255,0.4),
-		inset 0 -4px 8px rgba(0,0,25,0.35);
-	display: block;
-	left: 0;
-	margin: 2px 0;
-	overflow: hidden;
-	padding: 0 5px 0 20px;
-	position: relative;
-	text-overflow: ellipsis;
-	transition: background, left;
-	transition-duration: 500ms;
-	white-space: nowrap;
-	width: 150px;
-}
-menu[type="channels"] menuitem:hover {
-	left: 0;
-	cursor: pointer;
-	background: rgba(0,100,200,0.5);
-}
-/* must come after :hover to prevent hover styles */
-menu[type="channels"] menuitem.active {
-	left: 0;
-	cursor: default;
-	background: rgba(0,0,200,0.5);
-}
-menu[type="channels"] menuitem a {
+/* menu buttons */
+menu[type="channels"] .md-button {
+	background: #323232;
+	border-radius: 4px;
 	color: #FFFFFF;
-	display: block;
 	overflow: hidden;
-	text-decoration: none;
+	padding: 0 5px 0 28px;
+	text-align: left;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	width: 15vw;
 }
-menu[type="channels"] menuitem.active a:hover {
-	cursor: default;
+menu[type="channels"] .md-button:hover {
+	color: #323232;
 }
 /* indicator */
-menu[type="channels"] menuitem::before {
+menu[type="channels"] .md-button::before {
 	content: "";
 	position: absolute;
-	top: 2px;
-	left: 2px;
-	width: 14px;
-	height: 14px;
-	border-radius: 7px;
+	top: 10px;
+	left: 6px;
+	width: 16px;
+	height: 16px;
+	border-radius: 8px;
 	background: #000000;
 }
 /* set indicator colors */
@@ -229,36 +188,23 @@ menu[type="channels"] .emergency-red::before {
 	margin: 3px;
 	padding: 2px;
 }
-.graph-column md-content {
-	
-}
 
 /** scorecards view **/
 /* top form controls */
-.controls {
-	margin: 10px auto;
-	text-align: center;
-}
-.controls label {
+.controls > label {
 	font-family: Play,sans-serif;
 	font-weight: 700;
-	font-size: 115%
+	font-size: 115%;
+	margin-right: 10px;
 }
-.controls input, .controls select {
-	height: 2em;
-	padding: 0 10px;
-}
-/**-/ FIX: Chrome 1px jog /-**/
-.controls select {
-	position: relative;
-	top: 1px;
-}
+
 /* autosuggest menu */
 autosuggest-input {
 	display: inline-block;
 	position: relative;
 }
 .suggestions-list {
+	left: 0;
 	list-style-type: none;
 	position: absolute;
 	padding: 0;
@@ -267,15 +213,16 @@ autosuggest-input {
 	z-index: 1;
 }
 .suggestions-list li {
-	background: #F9F9F9;
-	border-bottom: 1px solid #EEEEEE;
-	color: #000000;
+	background: #FFFFFF;
+	border: 1px solid #EEEEEE;
+	border-top: 0 none;
 	cursor: pointer;
 	padding: 5px 10px;
 	text-align: left;
 }
 .suggestions-list li:hover {
-	background: #EEEEEE;
+	background: #323232;
+	color: #FFFFFF;
 }
 .suggestions-list li:active,
 .suggestions-list li.active {
@@ -290,7 +237,6 @@ autosuggest-input {
 	background: #F5F5F5;
 	border-spacing: 0;
 	box-shadow: inset 0 1px 0 #FFFFFF;
-	margin: 20px auto;
 	overflow: hidden;
 	resize: both;
 	text-align: left;

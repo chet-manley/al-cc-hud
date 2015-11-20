@@ -29,19 +29,21 @@
 	<script src="app/components/scorecards/scorecards.controller.js"></script>
 </head>
 <body ng-app="alccDash">
-	<nav>
-		<ul>
-			<li><a ng-href="#/dashboard">Dashboard</a></li>
-			<li>
-				<a>Scorecards</a>
-				<ul>
-					<li><a ng-href="#/scorecards/individual/">Individual</a></li>
-					<li><a ng-href="#/scorecards/team/">Team</a></li>
-					<li><a ng-href="#/scorecards/department/">Department</a></li>
-				</ul>
-			</li>
-		</ul>
-	</nav>
+	<md-toolbar class="md-whiteframe-2dp" layout="column" layout-align="end start">
+		<nav>
+			<ul layout="row" layout-align="start center">
+				<li><a ng-href="#/dashboard">Dashboard</a></li>
+				<li>
+					<a>Scorecards</a>
+					<ul class="submenu" layout="row" layout-align="start center">
+						<li><a ng-href="#/scorecards/individual/">Individual</a></li>
+						<li><a ng-href="#/scorecards/team/">Team</a></li>
+						<li><a ng-href="#/scorecards/department/">Department</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</md-toolbar>
 	<main ng-view></main>
 </body>
 </html>
