@@ -18,12 +18,8 @@
 			<header class="md-toolbar-tools"><h1>Tickets in Jeopardy</h1></header>
 		</md-toolbar>
 		<md-content layout="row" layout-gt-lg="column">
-			<div flex>
-				<canvas chart-line chart-legend="true" chart-labels="ctrl.testGraph.labels" chart-data="ctrl.testGraph.data" chart-series="ctrl.testGraph.series"></canvas>
-			</div>
-			<div flex>
-				<canvas chart-line chart-legend="true" chart-labels="ctrl.testGraph.labels" chart-data="ctrl.testGraph.data" chart-series="ctrl.testGraph.series"></canvas>
-			</div>
+			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.jeopardyTotal"></alcc-graph>
+			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.jeopardy"></alcc-graph>
 		</md-content>
 	</md-card>
 	<md-card flex class="graph-column">
@@ -31,12 +27,8 @@
 			<header class="md-toolbar-tools"><h2>Tickets Exceeding SLA</h2></header>
 		</md-toolbar>
 		<md-content layout="row" layout-gt-lg="column">
-			<div flex>
-				<canvas chart-line chart-legend="true" chart-labels="ctrl.testGraph.labels" chart-data="ctrl.testGraph.data" chart-series="ctrl.testGraph.series"></canvas>
-			</div>
-			<div flex>
-				<canvas chart-line chart-legend="true" chart-labels="ctrl.testGraph.labels" chart-data="ctrl.testGraph.data" chart-series="ctrl.testGraph.series"></canvas>
-			</div>
+			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.slaTotal"></alcc-graph>
+			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.sla"></alcc-graph>
 		</md-content>
 	</md-card>
 </section>
@@ -47,12 +39,8 @@
 			<header class="md-toolbar-tools"><h2>Ticket Volume</h2></header>
 		</md-toolbar>
 		<md-content layout="row" layout-gt-lg="column">
-			<div flex>
-				<canvas chart-line chart-legend="true" chart-labels="ctrl.testGraph.labels" chart-data="ctrl.testGraph.data" chart-series="ctrl.testGraph.series"></canvas>
-			</div>
-			<div flex>
-				<canvas chart-line chart-legend="true" chart-labels="ctrl.testGraph.labels" chart-data="ctrl.testGraph.data" chart-series="ctrl.testGraph.series"></canvas>
-			</div>
+			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.volumeTotal"></alcc-graph>
+			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.volume"></alcc-graph>
 		</md-content>
 	</md-card>
 	<md-card flex class="graph-column">
@@ -60,12 +48,8 @@
 			<header class="md-toolbar-tools"><h2>Escalations</h2></header>
 		</md-toolbar>
 		<md-content layout="row" layout-gt-lg="column">
-			<div flex>
-				<canvas chart-line chart-legend="true" chart-labels="ctrl.testGraph.labels" chart-data="ctrl.testGraph.data" chart-series="ctrl.testGraph.series"></canvas>
-			</div>
-			<div flex>
-				<canvas chart-line chart-legend="true" chart-labels="ctrl.testGraph.labels" chart-data="ctrl.testGraph.data" chart-series="ctrl.testGraph.series"></canvas>
-			</div>
+			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.escalationsTotal"></alcc-graph>
+			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.escalations"></alcc-graph>
 		</md-content>
 	</md-card>
 </section>

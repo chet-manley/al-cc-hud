@@ -3,15 +3,45 @@
 	/* define service */
 	function dataService($http, $q) {
 		var svc = {},
-			// randomly generate numbers
-			randGen = function randGen(min, max, interval) {
-				var i = 0, ret = [];
-				if (typeof interval === 'undefined') {interval = 1; }
-				while (i < interval) {
-					ret.push(Math.floor(Math.random() * (max - min + 1) + min));
-					i++;
+			// generate positive integer(s) between min and max, inclusive
+			randGen = function randGen(min, max, iterations) {
+				var i, numbers = [];
+				if (typeof iterations !== 'number') {iterations = 1; }
+				for (i = 0; i < iterations; i = i + 1) {
+					numbers.push(Math.floor(Math.random() * (max - min + 1) + min));
 				}
-				return ret;
+				return numbers;
+			},
+			epochToString = function epochToString(t) {
+				var str,
+					hour,
+					months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+							  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+				t = new Date(t);
+				hour = t.getHours();
+				hour = hour <= 12 ? hour + 'A' : hour - 12 + 'P';
+				str = months[t.getMonth()]
+					+ ('0' + t.getDate()).slice(-2) + '-'
+					+ hour;
+				return str;
+			},
+			// interval in hours
+			timeGen = function timeGen(iterations, interval) {
+				var now = Date.now(),
+					times = [],
+					time = now,
+					i,
+					roundBy = function roundBy(n, r) {
+						return Math.round(n / r) * r;
+					};
+				if (typeof iterations !== 'number') {iterations = 1; }
+				if (typeof interval !== 'number') {interval = 12; }
+				for (i = 0; i < iterations; i = i + 1) {
+					// (msec * sec * min * hr)
+					time = time - (1000 * 60 * 60 * interval);
+					times.unshift(epochToString(time));
+				}
+				return times;
 			},
 			// transform error responses
 			handleError = function handleError(response) {
@@ -55,39 +85,69 @@
 							id: '34567'
 						},
 						{
-							name: 'Extra Long Team Name 1',
+							name: 'Team 4',
 							id: '45678'
 						}
 					]
 				};
 			},
-			graph: function graph(method) {
-				// GET
-				if (!method || method.toLowerCase() === 'get') {
-					return {
-						graph: {
-							labels: [
-								'Label 1',
-								'Label 2',
-								'Label 3',
-								'Label 4',
-								'Label 5',
-								'Label 6',
-								'Label 7'
-							],
-							series: [
-								'Series A',
-								'Series B',
-								'Series C'
-							],
-							data: [
-								randGen(10, 100, 7),
-								randGen(10, 100, 7),
-								randGen(10, 100, 7)
-							]
-						}
+			graph: function graph(name, series) {
+				var data = {};
+				// GET only
+				if (name === 'total') {
+					data.graph = {
+						labels: timeGen(6),
+						series: [
+							'Cumulative Total'
+						],
+						data: [
+							randGen(150, 300, 6)
+						]
 					};
 				}
+				if (name === 'indv') {
+					data.graph = {
+						labels: timeGen(6),
+						series: [
+							'Team 1',
+							'Team 2',
+							'Team 3',
+							'Team 4'
+						],
+						data: [
+							randGen(150, 300, 6),
+							randGen(150, 300, 6),
+							randGen(150, 300, 6),
+							randGen(150, 300, 6)
+						]
+					};
+				}
+				/*
+				{
+					graph: {
+						labels: [
+							'Label 1',
+							'Label 2',
+							'Label 3',
+							'Label 4',
+							'Label 5',
+							'Label 6',
+							'Label 7'
+						],
+						series: [
+							'Series A',
+							'Series B',
+							'Series C'
+						],
+						data: [
+							randGen(10, 100, 7),
+							randGen(10, 100, 7),
+							randGen(10, 100, 7)
+						]
+					}
+				};
+				*/
+				return data;
 			}
 		};
 		svc.scorecard = {
@@ -284,15 +344,27 @@
 									results: randGen(70, 100, 4)
 								},
 								{
-									kpi: 'Efficiency',
-									weight: 25,
+									kpi: 'Team Efficiency',
+									weight: 15,
 									goals: {
-										standard: 0
+										standard: 90,
+										high: 95,
+										low: 85
 									},
 									results: randGen(50, 100, 4)
 								},
 								{
-									kpi: 'Agent Satisfaction',
+									kpi: 'Team Utilization',
+									weight: 10,
+									goals: {
+										standard: 90,
+										high: 95,
+										low: 85
+									},
+									results: randGen(50, 100, 4)
+								},
+								{
+									kpi: 'Team Satisfaction',
 									weight: 15,
 									goals: {
 										standard: 85,
@@ -314,7 +386,9 @@
 							],
 							footer: {
 								goals: {
-									standard: 90
+									standard: 90,
+									high: 95,
+									low: 85
 								}
 							}
 						}
@@ -381,15 +455,27 @@
 									results: randGen(70, 100, 4)
 								},
 								{
-									kpi: 'Efficiency',
-									weight: 25,
+									kpi: 'Department Efficiency',
+									weight: 15,
 									goals: {
-										standard: 0
+										standard: 90,
+										high: 95,
+										low: 85
 									},
 									results: randGen(50, 100, 4)
 								},
 								{
-									kpi: 'Agent Satisfaction',
+									kpi: 'Department Utilization',
+									weight: 10,
+									goals: {
+										standard: 90,
+										high: 95,
+										low: 85
+									},
+									results: randGen(50, 100, 4)
+								},
+								{
+									kpi: 'Department Satisfaction',
 									weight: 15,
 									goals: {
 										standard: 85,
@@ -411,7 +497,9 @@
 							],
 							footer: {
 								goals: {
-									standard: 90
+									standard: 90,
+									high: 95,
+									low: 85
 								}
 							}
 						}
@@ -448,7 +536,7 @@
 		
 		return svc;
 	}
-	
+	dataService.$inject = ['$http', '$q'];
 	/* add service */
 	angular.module('alccDash')
 		.factory('data', dataService);

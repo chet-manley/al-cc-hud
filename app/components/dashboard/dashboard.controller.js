@@ -1,7 +1,7 @@
 (function (angular, undefined) {
 	'use strict';
 	/* create controller */
-	function DashboardController($routeParams, $location, data) {
+	function DashboardController($routeParams, $location, data, graphs) {
 		var ctrl = this,
 			findTeamName = function findTeamName(id) {
 				var team;
@@ -14,12 +14,12 @@
 				});
 				return team || 'Invalid Team ID';
 			},
-			chartUpdate = function chartUpdate(opt) {
-				
-			},
 			updateHeader = function updateHeader(text) {
 				var header = text || ctrl.team.name;
 				ctrl.header = header;
+			},
+			updateGraph = function updateGraph(graph) {
+				
 			},
 			changeTeam = function changeTeam(newTeam) {
 				// cache new team
@@ -30,8 +30,8 @@
 				// update the URL
 				$location.path('dashboard/' + newTeam.id);
 			},
-			updateGraph = function updateGraph() {
-				
+			buildGraph = function buildGraph(graph, type) {
+				ctrl.graphs[graph] = data.dashboard.graph(type).graph;
 			},
 			init = function init() {
 				// assign properties and methods to controller //
@@ -42,8 +42,17 @@
 					id: $routeParams.teamId || 'all',
 					name: findTeamName($routeParams.teamId || 'all')
 				};
-				// retrieve test graph data
-				ctrl.testGraph = data.dashboard.graph().graph;
+				// init graph data object
+				ctrl.graphs = {};
+				buildGraph('jeopardyTotal', 'total');
+				buildGraph('jeopardy', 'indv');
+				buildGraph('slaTotal', 'total');
+				buildGraph('sla', 'indv');
+				buildGraph('volumeTotal', 'total');
+				buildGraph('volume', 'indv');
+				buildGraph('escalationsTotal', 'total');
+				buildGraph('escalations', 'indv');
+				//ctrl.testGraph = data.dashboard.graph('total').graph;
 				// set header
 				updateHeader();
 				// public methods
@@ -53,7 +62,12 @@
 		init();
 		console.log('DashboardController', ctrl);
 	}
-	DashboardController.$inject = ['$routeParams', '$location', 'data'];
+	DashboardController.$inject = [
+		'$routeParams',
+		'$location',
+		'data',
+		'graphs'
+	];
 	/* add controller */
 	angular.module('alccDash')
 		.controller('dashboard', DashboardController);
