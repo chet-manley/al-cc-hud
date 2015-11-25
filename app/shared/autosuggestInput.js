@@ -11,9 +11,9 @@
 					},
 					findSuggestions = function findSuggestions() {
 						// empty input
-						if (!ctrl.asData.nameText) {return resetSuggestions(); }
-						var text = ctrl.asData.nameText.toLowerCase(),
-							list = ctrl.asData.names,
+						if (!ctrl.data.nameText) {return resetSuggestions(); }
+						var text = ctrl.data.nameText.toLowerCase(),
+							list = ctrl.data.names,
 							len = list.length,
 							i = 0,
 							maxSuggestions = 5;
@@ -23,12 +23,12 @@
 							if (list[i].toLowerCase().indexOf(text) !== -1) {
 								ctrl.suggestions.push(list[i]);
 							}
-							i = i + 1;
+							i += 1;
 						}
 					},
 					selectSuggestion = function selectSuggestion(i) {
 						if (!ctrl.suggestions[i]) {return resetSuggestions(); }
-						ctrl.asData.nameText = ctrl.suggestions[i];
+						ctrl.data.nameText = ctrl.suggestions[i];
 						return resetSuggestions();
 					},
 					hideSuggestions = function hideSuggestions() {
@@ -70,7 +70,7 @@
 			templateUrl: 'app/shared/autosuggestInput.htm',
 			scope: {},
 			bindToController: {
-				'asData': '='
+				'data': '=asData'
 			},
 			controller: Controller,
 			controllerAs: 'autosuggestCtrl'

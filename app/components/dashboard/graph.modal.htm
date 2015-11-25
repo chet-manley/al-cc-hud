@@ -1,0 +1,15 @@
+<md-dialog ng-cloak>
+	<md-toolbar>
+		<header class="md-toolbar-tools">
+			<h2>Header</h2>
+			<span flex></span>
+			<md-buttton class="md-icon-button" ng-click="ctrl.cancel()">X</md-buttton>
+		</header>
+	</md-toolbar>
+	<md-dialog-content>
+		<flex-graph flex graph-type="Line" graph-name="{{ctrl.name}}"></flex-graph>
+	</md-dialog-content>
+	<md-dialog-actions>
+		<md-button ng-click="ctrl.cancel()">Done</md-button>
+	</md-dialog-actions>
+</md-dialog>

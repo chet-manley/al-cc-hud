@@ -9,6 +9,7 @@
 			<a ng-href="#/dashboard/{{channel.id}}">{{channel.name}}</a>
 			-->
 		</menuitem>
+		<menuitem><md-button class="md-raised" ng-click="ctrl.showGraph($event,'jeopardy')">dialog</md-button></menuitem>
 	</menu>
 </section>
 
@@ -18,8 +19,8 @@
 			<header class="md-toolbar-tools"><h1>Tickets in Jeopardy</h1></header>
 		</md-toolbar>
 		<md-content layout="row" layout-gt-lg="column">
-			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.jeopardyTotal"></alcc-graph>
-			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.jeopardy"></alcc-graph>
+			<flex-graph flex graph-type="Line" graph-name="jeopardyTotal"></flex-graph>
+			<flex-graph flex graph-type="Bar" graph-name="jeopardy"></flex-graph>
 		</md-content>
 	</md-card>
 	<md-card flex class="graph-column">
@@ -27,8 +28,8 @@
 			<header class="md-toolbar-tools"><h2>Tickets Exceeding SLA</h2></header>
 		</md-toolbar>
 		<md-content layout="row" layout-gt-lg="column">
-			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.slaTotal"></alcc-graph>
-			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.sla"></alcc-graph>
+			<flex-graph flex graph-type="Line" graph-name="slaTotal"></flex-graph>
+			<flex-graph flex graph-type="Line" graph-name="sla"></flex-graph>
 		</md-content>
 	</md-card>
 </section>
@@ -39,8 +40,8 @@
 			<header class="md-toolbar-tools"><h2>Ticket Volume</h2></header>
 		</md-toolbar>
 		<md-content layout="row" layout-gt-lg="column">
-			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.volumeTotal"></alcc-graph>
-			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.volume"></alcc-graph>
+			<flex-graph flex graph-type="Line" graph-name="volumeTotal"></flex-graph>
+			<flex-graph flex graph-type="Line" graph-name="volume"></flex-graph>
 		</md-content>
 	</md-card>
 	<md-card flex class="graph-column">
@@ -48,8 +49,8 @@
 			<header class="md-toolbar-tools"><h2>Escalations</h2></header>
 		</md-toolbar>
 		<md-content layout="row" layout-gt-lg="column">
-			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.escalationsTotal"></alcc-graph>
-			<alcc-graph flex graph-type="Line" graph-data="ctrl.graphs.escalations"></alcc-graph>
+			<flex-graph flex graph-type="Line" graph-name="escalationsTotal"></flex-graph>
+			<flex-graph flex graph-type="Line" graph-name="escalations"></flex-graph>
 		</md-content>
 	</md-card>
 </section>

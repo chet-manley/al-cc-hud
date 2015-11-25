@@ -73,80 +73,36 @@
 							id: 'all'
 						},
 						{
-							name: 'Team 1',
+							name: 'Customer Care',
 							id: '12345'
 						},
 						{
-							name: 'Team 2',
+							name: 'NOC',
 							id: '23456'
 						},
 						{
-							name: 'Team 3',
+							name: 'SOC',
 							id: '34567'
-						},
-						{
-							name: 'Team 4',
-							id: '45678'
 						}
 					]
 				};
 			},
-			graph: function graph(name, series) {
+			graph: function graph(series) {
 				var data = {};
 				// GET only
-				if (name === 'total') {
-					data.graph = {
-						labels: timeGen(6),
-						series: [
-							'Cumulative Total'
-						],
-						data: [
-							randGen(150, 300, 6)
-						]
-					};
-				}
-				if (name === 'indv') {
-					data.graph = {
-						labels: timeGen(6),
-						series: [
-							'Team 1',
-							'Team 2',
-							'Team 3',
-							'Team 4'
-						],
-						data: [
-							randGen(150, 300, 6),
-							randGen(150, 300, 6),
-							randGen(150, 300, 6),
-							randGen(150, 300, 6)
-						]
-					};
-				}
-				/*
-				{
-					graph: {
-						labels: [
-							'Label 1',
-							'Label 2',
-							'Label 3',
-							'Label 4',
-							'Label 5',
-							'Label 6',
-							'Label 7'
-						],
-						series: [
-							'Series A',
-							'Series B',
-							'Series C'
-						],
-						data: [
-							randGen(10, 100, 7),
-							randGen(10, 100, 7),
-							randGen(10, 100, 7)
-						]
-					}
+				data.graph = {
+					labels: timeGen(6),
+					series: [
+						'Customer Care',
+						'NOC',
+						'SOC'
+					],
+					data: [
+						randGen(200, 250, 6),
+						randGen(200, 250, 6),
+						randGen(200, 250, 6)
+					]
 				};
-				*/
 				return data;
 			}
 		};
@@ -171,10 +127,9 @@
 				team: function getTeams() {
 					return {
 						names: [
-							'team 1',
-							'team 2',
-							'team 3',
-							'team 4'
+							'Customer Care',
+							'NOC',
+							'SOC'
 						],
 						times: [
 							'Weekly',

@@ -1,6 +1,6 @@
 <md-input-container flex>
-	<label>{{autosuggestCtrl.asData.placeholder}}</label>
-	<input type="text" id="{{autosuggestCtrl.asData.id}}" ng-model="autosuggestCtrl.asData.nameText" ng-change="autosuggestCtrl.findSuggestions()" ng-keydown="autosuggestCtrl.checkChange($event)" ng-focus="autosuggestCtrl.findSuggestions()" ng-blur="autosuggestCtrl.hideSuggestions()" autocomplete="off" required />
+	<label>{{autosuggestCtrl.data.placeholder}}</label>
+	<input type="text" id="{{autosuggestCtrl.data.id}}" ng-model="autosuggestCtrl.data.nameText" ng-change="autosuggestCtrl.findSuggestions()" ng-keydown="autosuggestCtrl.checkChange($event)" ng-focus="autosuggestCtrl.findSuggestions()" ng-blur="autosuggestCtrl.hideSuggestions()" autocomplete="off" required />
 	<ul class="suggestions-list md-whiteframe-2dp" layout="row" layout-align="start center" layout-wrap>
 		<li flex="grow" ng-repeat="suggestion in autosuggestCtrl.suggestions track by $index" ng-class="{active: autosuggestCtrl.selectedIndex === $index}" ng-click="autosuggestCtrl.selectSuggestion($index)">{{suggestion}}</li>
 	</ul>

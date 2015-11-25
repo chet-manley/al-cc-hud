@@ -49,7 +49,6 @@
 					totals = calculateTotals(table.rows);
 				table.footer.results = totals.results;
 				table.footer.goals = totals.goals;
-				console.log(table.footer);
 				ctrl.table = table;
 			},
 			doQuery = function doQuery(name, time) {
