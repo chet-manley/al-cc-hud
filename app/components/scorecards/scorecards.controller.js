@@ -10,28 +10,30 @@
 					len = rows[0].results.length,
 					column,
 					totals = {goals: {}, results: []};
+				// results
 				for (i = 0; i < len; i = i + 1) {
-					// results
 					column = 0;
 					rows.forEach(function (row) {
 						column += row.results[i] * (row.weight / 100);
 					});
 					totals.results.push(Number(column.toFixed(1)));
-					// goals
-					if (i + 1 === len) {
-						column = 0;
-						rows.forEach(function (row) {
-							column += row.goals.standard * (row.weight / 100);
-						});
-						// Explicitly coerce to number
-						column = Number(column.toFixed(1));
-						totals.goals = {
-							standard: column,
-							high: column + 5,
-							low: column - 5
-						};
-					}
 				}
+				// goals
+				column = {
+					standard: 0,
+					high: 0,
+					low: 0
+				};
+				rows.forEach(function (row) {
+					column.standard += row.goals.standard * (row.weight / 100);
+					column.high += row.goals.high * (row.weight / 100);
+					column.low += row.goals.low * (row.weight / 100);
+				});
+				// Explicitly coerce to number
+				column.standard = Number(column.standard.toFixed(1));
+				column.high = Number(column.high.toFixed(1));
+				column.low = Number(column.low.toFixed(1));
+				totals.goals = column;
 				return totals;
 			},
 			getScorecard = function getScorecard(name, time) {

@@ -1,15 +1,20 @@
-<md-dialog ng-cloak>
-	<md-toolbar>
+<md-dialog ng-cloak layout="row" layout-wrap>
+	<md-toolbar flex="grow">
 		<header class="md-toolbar-tools">
-			<h2>Header</h2>
+			<h2 class="capitalize">{{ctrl.header}}</h2>
 			<span flex></span>
-			<md-buttton class="md-icon-button" ng-click="ctrl.cancel()">X</md-buttton>
+			<md-button class="md-icon-button" ng-click="ctrl.cancel()">
+				<md-icon md-svg-src="assets/img/icons/ic_close_24px.svg"></md-icon>
+			</md-button>
 		</header>
 	</md-toolbar>
-	<md-dialog-content>
-		<flex-graph flex graph-type="Line" graph-name="{{ctrl.name}}"></flex-graph>
+	<md-dialog-content flex="grow" layout="row" layout-align="center center" layout-wrap>
+		<section class="md-dialog-content" flex="grow">
+			<flex-graph graph-type="Line" graph-name="{{ctrl.name}}"></flex-graph>
+		</section>
+		<md-divider flex="grow"></md-divider>
 	</md-dialog-content>
-	<md-dialog-actions>
+	<md-dialog-actions flex="grow">
 		<md-button ng-click="ctrl.cancel()">Done</md-button>
 	</md-dialog-actions>
 </md-dialog>

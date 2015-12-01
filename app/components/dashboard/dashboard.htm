@@ -1,15 +1,14 @@
 <header class="center capitalize"><h1>{{ctrl.header}}</h1></header>
 
-<div layout="column" layout-gt-lg="row" layout-wrap>
+<div layout="column" layout-gt-md="row" layout-wrap>
 <section flex="none">
-	<menu layout="row" layout-gt-lg="column" layout-align="space-around start" layout-wrap type="channels" label="">
+	<menu layout="row" layout-gt-md="column" layout-align="space-around start" layout-wrap type="channels" label="">
 		<menuitem ng-repeat="team in ctrl.teams" data-team-id="{{team.id}}">
-			<md-button class="md-raised" ng-disabled="team.id === ctrl.team.id" ng-click="ctrl.changeTeam(team)">{{team.name}}</md-button>
+			<md-button class="menu-btn md-raised" ng-disabled="team.id === ctrl.team.id" ng-click="ctrl.changeTeam(team)">{{team.name}}</md-button>
 			<!--
 			<a ng-href="#/dashboard/{{channel.id}}">{{channel.name}}</a>
 			-->
 		</menuitem>
-		<menuitem><md-button class="md-raised" ng-click="ctrl.showGraph($event,'jeopardy')">dialog</md-button></menuitem>
 	</menu>
 </section>
 
@@ -18,18 +17,18 @@
 		<md-toolbar layout="row" layout-align="start center">
 			<header class="md-toolbar-tools"><h1>Tickets in Jeopardy</h1></header>
 		</md-toolbar>
-		<md-content layout="row" layout-gt-lg="column">
-			<flex-graph flex graph-type="Line" graph-name="jeopardyTotal"></flex-graph>
-			<flex-graph flex graph-type="Bar" graph-name="jeopardy"></flex-graph>
+		<md-content layout="row" layout-gt-md="column">
+			<flex-graph flex graph-name="jeopardyTotal" ng-click="ctrl.showGraph($event,'jeopardyTotal','total tickets in jeopardy')"></flex-graph>
+			<flex-graph flex graph-name="jeopardy" ng-click="ctrl.showGraph($event,'jeopardy','tickets in jeopardy')"></flex-graph>
 		</md-content>
 	</md-card>
 	<md-card flex class="graph-column">
 		<md-toolbar layout="row" layout-align="start center">
 			<header class="md-toolbar-tools"><h2>Tickets Exceeding SLA</h2></header>
 		</md-toolbar>
-		<md-content layout="row" layout-gt-lg="column">
-			<flex-graph flex graph-type="Line" graph-name="slaTotal"></flex-graph>
-			<flex-graph flex graph-type="Line" graph-name="sla"></flex-graph>
+		<md-content layout="row" layout-gt-md="column">
+			<flex-graph flex graph-name="slaTotal" ng-click="ctrl.showGraph($event,'slaTotal','total tickets exceeding SLA')"></flex-graph>
+			<flex-graph flex graph-name="sla" ng-click="ctrl.showGraph($event,'sla','tickets exceeding SLA')"></flex-graph>
 		</md-content>
 	</md-card>
 </section>
@@ -39,18 +38,30 @@
 		<md-toolbar layout="row" layout-align="start center">
 			<header class="md-toolbar-tools"><h2>Ticket Volume</h2></header>
 		</md-toolbar>
-		<md-content layout="row" layout-gt-lg="column">
-			<flex-graph flex graph-type="Line" graph-name="volumeTotal"></flex-graph>
-			<flex-graph flex graph-type="Line" graph-name="volume"></flex-graph>
+		<md-content layout="row" layout-gt-md="column">
+			<flex-graph flex graph-name="volumeTotal" ng-click="ctrl.showGraph($event,'volumeTotal','total ticket volume')"></flex-graph>
+			<flex-graph flex graph-name="volume" ng-click="ctrl.showGraph($event,'volume','ticket volume')"></flex-graph>
 		</md-content>
 	</md-card>
 	<md-card flex class="graph-column">
 		<md-toolbar layout="row" layout-align="start center">
 			<header class="md-toolbar-tools"><h2>Escalations</h2></header>
 		</md-toolbar>
-		<md-content layout="row" layout-gt-lg="column">
-			<flex-graph flex graph-type="Line" graph-name="escalationsTotal"></flex-graph>
-			<flex-graph flex graph-type="Line" graph-name="escalations"></flex-graph>
+		<md-content layout="row" layout-gt-md="column">
+			<flex-graph flex graph-name="escalationsTotal" ng-click="ctrl.showGraph($event,'escalationsTotal','total ticket escalations')"></flex-graph>
+			<flex-graph flex graph-name="escalations" ng-click="ctrl.showGraph($event,'escalations','ticket escalations')"></flex-graph>
+		</md-content>
+	</md-card>
+</section>
+
+<section flex layout="column">
+	<md-card flex class="graph-column">
+		<md-toolbar layout="row" layout-align="start center">
+			<header class="md-toolbar-tools"><h2>First Touch Resolve</h2></header>
+		</md-toolbar>
+		<md-content layout="row" layout-gt-md="column">
+			<flex-graph flex graph-name="ftrTotal" ng-click="ctrl.showGraph($event,'ftrTotal','first touch resolve total')"></flex-graph>
+			<flex-graph flex graph-name="ftr" ng-click="ctrl.showGraph($event,'ftr','first touch resolve')"></flex-graph>
 		</md-content>
 	</md-card>
 </section>

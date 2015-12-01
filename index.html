@@ -32,9 +32,9 @@
 	<script src="app/components/scorecards/scorecards.controller.js"></script>
 </head>
 <body ng-app="alccDash">
-	<md-toolbar class="md-whiteframe-2dp" layout="column" layout-align="end start">
-		<nav>
-			<ul layout="row" layout-align="start center">
+	<md-toolbar class="md-whiteframe-2dp md-toolbar-tools">
+		<nav layout="row" layout-fill>
+			<ul layout="row" layout-align="start end">
 				<li><a ng-href="#/dashboard">Dashboard</a></li>
 				<li>
 					<a>Scorecards</a>
@@ -46,6 +46,7 @@
 				</li>
 			</ul>
 		</nav>
+		<img src="assets/img/amark-white.png" class="al-logo" />
 	</md-toolbar>
 	<main ng-view></main>
 </body>

@@ -8,7 +8,8 @@
 					'jeopardy',
 					'sla',
 					'volume',
-					'escalations'
+					'escalations',
+					'ftr'
 				]
 			},
 			findTeamName = function findTeamName(id) {
@@ -29,13 +30,14 @@
 			updateGraph = function updateGraph(graph) {
 				
 			},
-			showGraph = function showGraph(event, graph) {
+			showGraph = function showGraph(event, graph, header) {
 				$mdDialog.show({
 					templateUrl: 'app/components/dashboard/graph.modal.htm',
 					controller: 'base.modal',
 					controllerAs: 'ctrl',
 					locals: {
-						name: graph
+						name: graph,
+						header: header
 					},
 					bindToController: true,
 					parent: angular.element(document.body),
@@ -95,18 +97,19 @@
 				// public methods
 				ctrl.changeTeam = changeTeam;
 				ctrl.showGraph = showGraph;
-				
-				$interval(function () {
-					var graph = graphs.save('jeopardy', data.dashboard.graph().graph);
-					graphs.save('jeopardyTotal', {
-						data: [calculateTotals(graph.data)],
-						labels: graph.labels,
-						series: ['Cumulative Totals']
-					});
-				}, 2500);
 			};
 		// this controller auto-inits
 		init();
+		/*
+		$interval(function () {
+			var graph = graphs.save('jeopardy', data.dashboard.graph().graph);
+			graphs.save('jeopardyTotal', {
+				data: [calculateTotals(graph.data)],
+				labels: graph.labels,
+				series: ['Cumulative Totals']
+			});
+		}, 5000);
+		*/
 		console.log('DashboardController', ctrl);
 	}
 	DashboardController.$inject = [

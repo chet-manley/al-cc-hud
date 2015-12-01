@@ -44,31 +44,33 @@ body {
 	position: absolute;
 }
 
-/* primary header navigation */
+/** header toolbar **/
+/* primary navigation */
 nav {
 	cursor: default;
 	font-weight: 700;
-	padding: 0 5vw;
 	text-shadow: 1px 1px 1px rgba(25,25,25,0.5);
+}
+nav > ul {
+	margin: 0 5vw;
 }
 nav ul {
 	cursor: default;
 	list-style-type: none;
 }
-nav ul li {
+nav li {
 	position: relative;
 	white-space: nowrap;
 }
 nav a {
-	color: inherit;
 	cursor: pointer;
 	display: block;
 	padding: 0.5em;
 	text-decoration: none;
 }
 nav li:hover {
-	background: #323232;
-	color: #FFFFFF;
+	background: #3C3C3C;
+	color: #D5D6D2;
 }
 /* nav sub-menus */
 nav li > .submenu {
@@ -80,22 +82,25 @@ nav li > .submenu {
 	width: 100%;
 }
 nav li li:hover {
-	background: #323232;
+	background: #3C3C3C;
 }
 nav li:hover > ul {
 	display: flex;
 }
+/* AL logo */
+md-toolbar .al-logo {
+	height: 46px;
+	margin-right: 5vw;
+	width: 46px;
+}
 
 /** content injection point **/
 main {
-	margin: 1vh 5vw;
+	margin: 2vh 5vw;
 }
 
 /* menu buttons */
-menu[type="channels"] .md-button {
-	background: #323232;
-	border-radius: 4px;
-	color: #FFFFFF;
+menu[type="channels"] .menu-btn {
 	overflow: hidden;
 	padding: 0 5px 0 28px;
 	text-align: left;
@@ -103,11 +108,15 @@ menu[type="channels"] .md-button {
 	white-space: nowrap;
 	width: 15vw;
 }
-menu[type="channels"] .md-button:hover {
-	color: #323232;
+menu[type="channels"] .menu-btn:not([disabled]) {
+	background-color: #3C3C3C;
+	color: #D5D6D2;
+}
+menu[type="channels"] .menu-btn:not([disabled]):hover {
+	color: #3C3C3C;
 }
 /* indicator */
-menu[type="channels"] .md-button::before {
+menu[type="channels"] .menu-btn::before {
 	content: "";
 	position: absolute;
 	top: 10px;
@@ -182,6 +191,12 @@ menu[type="channels"] .emergency-red::before {
 	width: 20px;
 	height: 20px;
 	border-radius: 5px;
+}
+/* center canvas in wrapper */
+canvas {
+	display: block;
+	margin: 2vh auto;
+	width: 100%;
 }
 /* graph containers */
 .graph-column {

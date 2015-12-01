@@ -14,7 +14,8 @@
 			scope: {},
 			bindToController: {
 				'type': '@graphType',
-				'name': '@graphName'
+				'name': '@graphName',
+				'onClick': '=graphClick'
 			},
 			controller: Controller,
 			controllerAs: 'graphCtrl'
