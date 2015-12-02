@@ -49,8 +49,10 @@
 			updateTable = function updateTable() {
 				var table = scorecard.scorecard,
 					totals = calculateTotals(table.rows);
-				table.footer.results = totals.results;
-				table.footer.goals = totals.goals;
+				table.footer = {
+					results: totals.results,
+					goals: totals.goals
+				};
 				ctrl.table = table;
 			},
 			doQuery = function doQuery(name, time) {

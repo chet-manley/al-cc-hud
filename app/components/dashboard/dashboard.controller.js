@@ -25,6 +25,9 @@
 			},
 			updateHeader = function updateHeader(text) {
 				var header = text || ctrl.team.name;
+				if (ctrl.team.id !== 'all') {
+					header += ' team';
+				}
 				ctrl.header = header;
 			},
 			updateGraph = function updateGraph(graph) {
@@ -68,10 +71,10 @@
 				});
 				return totals;
 			},
-			buildGraphs = function buildGraphs() {
+			buildGraphs = function buildGraphs(series) {
 				config.graphs.forEach(function (v, i, a) {
 					var name = v.toLowerCase(),
-						graph = data.dashboard.graph().graph;
+						graph = data.dashboard.graph(series).graph;
 					graphs.save(name, graph);
 					// calculate totals
 					graphs.save((name + 'Total'), {
@@ -91,7 +94,7 @@
 					name: findTeamName($routeParams.teamId || 'all')
 				};
 				// init graph data object
-				buildGraphs();
+				buildGraphs(ctrl.team.name);
 				// set header
 				updateHeader();
 				// public methods

@@ -89,20 +89,54 @@
 			},
 			graph: function graph(series) {
 				var data = {};
+				series = series ? series.toLowerCase() : 'all';
 				// GET only
-				data.graph = {
-					labels: timeGen(6),
-					series: [
-						'Customer Care',
-						'NOC',
-						'SOC'
-					],
-					data: [
-						randGen(200, 250, 6),
-						randGen(200, 250, 6),
-						randGen(200, 250, 6)
-					]
-				};
+				switch (series) {
+				case 'customer care':
+					data.graph = {
+						labels: timeGen(6),
+						series: [
+							'Customer Care',
+							'Customer Care Admin'
+						],
+						data: [
+							randGen(200, 250, 6),
+							randGen(200, 250, 6)
+						]
+					};
+					break;
+				case 'noc':
+					data.graph = {
+						labels: timeGen(6),
+						series: [
+							'NOC 1',
+							'NOC 2',
+							'WSM Premier'
+						],
+						data: [
+							randGen(200, 250, 6),
+							randGen(200, 250, 6),
+							randGen(200, 250, 6)
+						]
+					};
+					break;
+				case 'all':
+					
+				default:
+					data.graph = {
+						labels: timeGen(6),
+						series: [
+							'Customer Care',
+							'NOC',
+							'SOC'
+						],
+						data: [
+							randGen(200, 250, 6),
+							randGen(200, 250, 6),
+							randGen(200, 250, 6)
+						]
+					};
+				}
 				return data;
 			}
 		};
@@ -175,66 +209,59 @@
 										high: 95,
 										low: 70
 									},
-									results: randGen(60, 100, 4)
+									results: randGen(65, 100, 4)
 								},
 								{
 									kpi: 'Case/Call Assessment',
-									weight: 15,
+									weight: 10,
 									goals: {
 										standard: 95,
-										high: 97,
-										low: 75
+										high: 100,
+										low: 90
 									},
-									results: randGen(70, 100, 4)
+									results: randGen(85, 100, 4)
 								},
 								{
 									kpi: 'Agent Efficiency',
 									weight: 15,
 									goals: {
-										standard: 90,
-										high: 95,
-										low: 85
+										standard: 80,
+										high: 90,
+										low: 70
 									},
-									results: randGen(50, 100, 4)
+									results: randGen(65, 100, 4)
 								},
 								{
 									kpi: 'Agent Utilization',
-									weight: 10,
+									weight: 25,
 									goals: {
-										standard: 90,
-										high: 95,
-										low: 85
+										standard: 80,
+										high: 90,
+										low: 70
 									},
-									results: randGen(50, 100, 4)
+									results: randGen(65, 100, 4)
 								},
 								{
 									kpi: 'Agent Satisfaction',
 									weight: 15,
 									goals: {
 										standard: 85,
-										high: 90,
-										low: 70
+										high: 95,
+										low: 60
 									},
-									results: randGen(60, 100, 4)
+									results: randGen(55, 100, 4)
 								},
 								{
 									kpi: 'Customer Satisfaction',
-									weight: 20,
+									weight: 10,
 									goals: {
 										standard: 90,
 										high: 95,
-										low: 70
+										low: 80
 									},
-									results: randGen(60, 100, 4)
+									results: randGen(75, 100, 4)
 								}
-							],
-							footer: {
-								goals: {
-									standard: 90,
-									high: 95,
-									low: 85
-								}
-							}
+							]
 						}
 					};
 					data.scorecard.headers = time.toLowerCase() === 'weekly'
@@ -286,66 +313,59 @@
 										high: 95,
 										low: 70
 									},
-									results: randGen(60, 100, 4)
+									results: randGen(65, 100, 4)
 								},
 								{
 									kpi: 'Case/Call Assessment',
-									weight: 15,
+									weight: 10,
 									goals: {
 										standard: 95,
-										high: 97,
-										low: 75
+										high: 100,
+										low: 90
 									},
-									results: randGen(70, 100, 4)
+									results: randGen(85, 100, 4)
 								},
 								{
 									kpi: 'Team Efficiency',
 									weight: 15,
 									goals: {
-										standard: 90,
-										high: 95,
-										low: 85
+										standard: 80,
+										high: 90,
+										low: 70
 									},
-									results: randGen(50, 100, 4)
+									results: randGen(65, 100, 4)
 								},
 								{
 									kpi: 'Team Utilization',
-									weight: 10,
+									weight: 25,
 									goals: {
-										standard: 90,
-										high: 95,
-										low: 85
+										standard: 80,
+										high: 90,
+										low: 70
 									},
-									results: randGen(50, 100, 4)
+									results: randGen(65, 100, 4)
 								},
 								{
 									kpi: 'Team Satisfaction',
 									weight: 15,
 									goals: {
 										standard: 85,
-										high: 90,
-										low: 70
+										high: 95,
+										low: 60
 									},
-									results: randGen(60, 100, 4)
+									results: randGen(55, 100, 4)
 								},
 								{
 									kpi: 'Customer Satisfaction',
-									weight: 20,
+									weight: 10,
 									goals: {
 										standard: 90,
 										high: 95,
-										low: 70
+										low: 80
 									},
-									results: randGen(60, 100, 4)
+									results: randGen(75, 100, 4)
 								}
-							],
-							footer: {
-								goals: {
-									standard: 90,
-									high: 95,
-									low: 85
-								}
-							}
+							]
 						}
 					};
 					data.scorecard.headers = time.toLowerCase() === 'weekly'
@@ -397,66 +417,59 @@
 										high: 95,
 										low: 70
 									},
-									results: randGen(60, 100, 4)
+									results: randGen(65, 100, 4)
 								},
 								{
 									kpi: 'Case/Call Assessment',
-									weight: 15,
+									weight: 10,
 									goals: {
 										standard: 95,
-										high: 97,
-										low: 75
+										high: 100,
+										low: 90
 									},
-									results: randGen(70, 100, 4)
+									results: randGen(85, 100, 4)
 								},
 								{
 									kpi: 'Department Efficiency',
 									weight: 15,
 									goals: {
-										standard: 90,
-										high: 95,
-										low: 85
+										standard: 80,
+										high: 90,
+										low: 70
 									},
-									results: randGen(50, 100, 4)
+									results: randGen(65, 100, 4)
 								},
 								{
 									kpi: 'Department Utilization',
-									weight: 10,
+									weight: 25,
 									goals: {
-										standard: 90,
-										high: 95,
-										low: 85
+										standard: 80,
+										high: 90,
+										low: 70
 									},
-									results: randGen(50, 100, 4)
+									results: randGen(65, 100, 4)
 								},
 								{
 									kpi: 'Department Satisfaction',
 									weight: 15,
 									goals: {
 										standard: 85,
-										high: 90,
-										low: 70
+										high: 95,
+										low: 60
 									},
-									results: randGen(60, 100, 4)
+									results: randGen(55, 100, 4)
 								},
 								{
 									kpi: 'Customer Satisfaction',
-									weight: 20,
+									weight: 10,
 									goals: {
 										standard: 90,
 										high: 95,
-										low: 70
+										low: 80
 									},
-									results: randGen(60, 100, 4)
+									results: randGen(75, 100, 4)
 								}
-							],
-							footer: {
-								goals: {
-									standard: 90,
-									high: 95,
-									low: 85
-								}
-							}
+							]
 						}
 					};
 					data.scorecard.headers = time.toLowerCase() === 'weekly'
