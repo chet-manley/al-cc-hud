@@ -73,19 +73,20 @@ nav li:hover {
 	color: #D5D6D2;
 }
 /* nav sub-menus */
-nav li > .submenu {
+nav li > ul {
 	background: rgba(50,50,50,0.9);
-	display: none;
 	left: 0;
+	opacity: 0;
 	padding: 0 5vw;
 	position: fixed;
+	transition: all 200ms ease 100ms;
+	visibility: hidden;
 	width: 100%;
 }
-nav li li:hover {
-	background: #3C3C3C;
-}
 nav li:hover > ul {
-	display: flex;
+	visibility: visible;
+	opacity: 1;
+	transition-delay: 0ms;
 }
 /* AL logo */
 md-toolbar .al-logo {
