@@ -212,41 +212,11 @@ canvas {
 	font-size: 115%;
 	margin-right: 10px;
 }
+/* fix padding mis-alignment */
+md-autocomplete.pad-fix md-input-container {
+	padding-bottom: 2px;
+}
 
-/* autosuggest menu */
-autosuggest-input {
-	display: inline-block;
-	position: relative;
-}
-.suggestions-list {
-	left: 0;
-	list-style-type: none;
-	position: absolute;
-	padding: 0;
-	width: 100%;
-	/* required to clear content */
-	z-index: 1;
-}
-.suggestions-list li {
-	background: #FFFFFF;
-	border: 1px solid #EEEEEE;
-	border-top: 0 none;
-	cursor: pointer;
-	padding: 5px 10px;
-	text-align: left;
-}
-.suggestions-list li:hover {
-	background: #323232;
-	color: #FFFFFF;
-}
-.suggestions-list li:active,
-.suggestions-list li.active {
-	color: #FFFFFF;
-	background: #0099FF;
-}
-.suggestions-list:focus{
-	outline:none;
-}
 /* scorecard table */
 .scorecard {
 	background: #F5F5F5;

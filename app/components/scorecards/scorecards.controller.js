@@ -1,7 +1,7 @@
 (function (angular, undefined) {
 	'use strict';
 	/* create controller */
-	function ScorecardsController($routeParams, data) {
+	function ScorecardsController($routeParams, $timeout, data) {
 		var ctrl = this,
 			cardType = $routeParams.type,
 			scorecard,
@@ -36,6 +36,32 @@
 				totals.goals = column;
 				return totals;
 			},
+			createFilterFor = function createFilterFor(query) {
+				query = angular.lowercase(query);
+				return function filterFn(name) {
+					// check === "0" to search only from beginning of string
+					return (name.value.indexOf(query) !== -1);
+				};
+			},
+			getNames = function getNames() {
+				var names = data.scorecard
+						.controls[cardType]
+						.names();
+				names.forEach(function (v, i, a) {
+					a[i] = {
+						value: v.toLowerCase(),
+						display: v
+					};
+				});
+				return names;
+			},
+			getTimes = function getTimes() {
+				return $timeout(function () {
+					ctrl.controls.times = data.scorecard
+						.controls[cardType]
+						.times(ctrl.controls.name.selected.value);
+				}, 1000);
+			},
 			getScorecard = function getScorecard(name, time) {
 				// cache scorecard
 				scorecard = data.scorecard[cardType].read(name, time);
@@ -43,7 +69,7 @@
 			},
 			updateHeader = function updateHeader(text) {
 				var header = scorecard.metadata || {};
-				header = header.name + ' ' + header.timeframe + ' Report';
+				header = header.name + '\'s ' + header.timeframe + ' Report';
 				ctrl.header = text || header;
 			},
 			updateTable = function updateTable() {
@@ -55,43 +81,44 @@
 				};
 				ctrl.table = table;
 			},
-			doQuery = function doQuery(name, time) {
-				name = name || ctrl.controls.autosuggest.nameText;
-				time = time || ctrl.controls.timeOption;
+			findScorecard = function findScorecard(name, time) {
+				name = name || ctrl.controls.name.selected.value;
+				time = time || ctrl.controls.time;
 				getScorecard(name, time);
 				updateTable();
 				updateHeader();
 			},
-			getControls = function getControls() {
-				var controls = data.scorecard.controls[cardType]();
-				return {
-					times: controls.times,
-					timeOption: '',
-					autosuggest: {
-						id: 'scorecardName',
-						placeholder: cardType,
-						nameText: '',
-						names: controls.names
+			findNames = function findNames(query) {
+				return query ? ctrl.controls.names.filter(createFilterFor(query)) : ctrl.controls.names;
+			},
+			initControlData = function initControlData() {
+				ctrl.controls = {
+					names: getNames(),
+					times: null,
+					loadTimes: getTimes,
+					name: {
+						text: null,
+						label: cardType,
+						selected: null,
+						search: findNames
 					},
-					action: doQuery
+					time: null,
+					action: findScorecard
 				};
 			},
 			init = function init() {
+				// initialize control data
+				initControlData();
 				// assign properties and methods to controller //
-				ctrl.cardType = cardType;
-				// get control data
-				ctrl.controls = getControls();
 				// build header data
 				ctrl.header = 'Please select a scorecard to continue';
-				// build our table with initial fake data
-				//doQuery(cardType, 'weekly');
 			};
 		
 		// this controller auto-inits
 		init();
 		//console.log('ScorecardsController', ctrl);
 	}
-	ScorecardsController.$inject = ['$routeParams', 'data'];
+	ScorecardsController.$inject = ['$routeParams', '$timeout', 'data'];
 	/* add controller */
 	angular.module('alccDash')
 		.controller('scorecards', ScorecardsController);

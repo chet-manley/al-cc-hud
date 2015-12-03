@@ -1,7 +1,7 @@
 (function (angular, undefined) {
 	'use strict';
 	/* define service */
-	function dataService($http, $q) {
+	function dataService($http, $q, $timeout) {
 		var svc = {},
 			// generate positive integer(s) between min and max, inclusive
 			randGen = function randGen(min, max, iterations) {
@@ -143,48 +143,54 @@
 		svc.scorecard = {
 			// dynamic scorecard control data
 			controls: {
-				individual: function getIndividuals() {
-					return {
-						names: [
+				individual: {
+					names: function getIndividualNames() {
+						return [
 							'Shelton Jenkins',
 							'Samuel King',
 							'Josh Gardner',
 							'Matthew Moreno',
 							'Suzanne Thompson'
-						],
-						times: [
+						];
+					},
+					times: function getIndividualTimes(name) {
+						return name ? [
 							'Weekly',
 							'Monthly'
-						]
-					};
+						] : null;
+					}
 				},
-				team: function getTeams() {
-					return {
-						names: [
+				team: {
+					names: function getTeamNames() {
+						return [
 							'Customer Care',
 							'NOC',
 							'SOC'
-						],
-						times: [
+						];
+					},
+					times: function getTeamTimes(name) {
+						return name ? [
 							'Weekly',
 							'Monthly'
-						]
-					};
+						] : null;
+					}
 				},
-				department: function getDepartments() {
-					return {
-						names: [
+				department: {
+					names: function getDepartmentNames() {
+						return [
 							'Customer Care',
 							'NOC',
 							'SOC',
 							'TOC',
 							'WSM'
-						],
-						times: [
+						];
+					},
+					times: function getDepartmentTimes(name) {
+						return name ? [
 							'Weekly',
 							'Monthly'
-						]
-					};
+						] : null;
+					}
 				}
 			},
 			// view scorecard data routes
@@ -504,7 +510,7 @@
 		
 		return svc;
 	}
-	dataService.$inject = ['$http', '$q'];
+	dataService.$inject = ['$http', '$q', '$timeout'];
 	/* add service */
 	angular.module('alccDash')
 		.factory('data', dataService);

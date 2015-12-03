@@ -1,10 +1,28 @@
 <md-card layout="column" layout-align="center center" layout-margin>
 <form class="controls" name="scorecardControl" layout="row" layout-align="center center" ng-submit="ctrl.controls.action()">
 	<label for="scorecardName">Find Scorecard:</label>
-	<autosuggest-input as-data="ctrl.controls.autosuggest"></autosuggest-input>
+	<md-autocomplete required class="pad-fix"
+		md-no-cache="false"
+		md-min-length="0"
+		md-input-name="scorecardName"
+		md-selected-item="ctrl.controls.name.selected"
+		md-search-text="ctrl.controls.name.text"
+		md-items="item in ctrl.controls.name.search(ctrl.controls.name.text)"
+		md-item-text="item.display"
+		md-floating-label="{{ctrl.controls.name.label}}">
+		<md-item-template>
+			<span md-highlight-text="ctrl.controls.name.text">{{item.display}}</span>
+		</md-item-template>
+		<md-not-found>
+			No match found.
+		</md-not-found>
+	</md-autocomplete>
 	<md-input-container>
 		<label>Timeframe</label>
-		<md-select ng-model="ctrl.controls.timeOption" md-on-open="" required>
+		<md-select required
+				   ng-model="ctrl.controls.time"
+				   ng-disabled="!ctrl.controls.name.selected"
+				   md-on-open="ctrl.controls.loadTimes()">
 			<md-option ng-repeat="time in ctrl.controls.times" value="{{time}}">{{time}}</md-option>
 		</md-select>
 	</md-input-container>
