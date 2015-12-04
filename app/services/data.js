@@ -4,8 +4,14 @@
 	function dataService($http, $q, $timeout) {
 		var svc = {},
 			// generate positive integer(s) between min and max, inclusive
-			randGen = function randGen(min, max, iterations) {
+			randGen = function randGen(min, max, iterations, series) {
 				var i, numbers = [];
+				if (typeof series === 'number') {
+					for (i = 0; i < series; i = i + 1) {
+						numbers.push(randGen(min, max, iterations));
+					}
+					return numbers;
+				}
 				if (typeof iterations !== 'number') {iterations = 1; }
 				for (i = 0; i < iterations; i = i + 1) {
 					numbers.push(Math.floor(Math.random() * (max - min + 1) + min));
@@ -19,9 +25,9 @@
 							  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 				t = new Date(t);
 				hour = t.getHours();
-				hour = hour <= 12 ? hour + 'A' : hour - 12 + 'P';
-				str = months[t.getMonth()]
-					+ ('0' + t.getDate()).slice(-2) + '-'
+				hour = hour <= 12 ? hour + 'AM' : hour - 12 + 'PM';
+				str = months[t.getMonth()] + ' '
+					+ ('0' + t.getDate()).slice(-2) + ', '
 					+ hour;
 				return str;
 			},
@@ -42,6 +48,37 @@
 					times.unshift(epochToString(time));
 				}
 				return times;
+			},
+			// separate SLA & SLO data
+			separateGraphData = function separateGraphData(graph) {
+				var data = graph.data;
+				graph.sla = [];
+				graph.slo = [];
+				// iterate over data and separate arrays
+				graph.series.forEach(function (v, i, a) {
+					if (v.toLowerCase().indexOf('sla') !== -1) {
+						graph.sla.push(data[i]);
+					}
+					if (v.toLowerCase().indexOf('slo') !== -1) {
+						graph.slo.push(data[i]);
+					}
+				});
+				return graph;
+			},
+			totalGraphData = function totalGraphData(data) {
+				if (!data) {return null; }
+				var totals = [],
+					total,
+					arrays = data.length,
+					array;
+				data[0].forEach(function (v, i, a) {
+					total = 0;
+					for (array = 0; array < arrays; array = array + 1) {
+						total += data[array][i];
+					}
+					totals.push(total);
+				});
+				return totals;
 			},
 			// transform error responses
 			handleError = function handleError(response) {
@@ -87,57 +124,75 @@
 					]
 				};
 			},
-			graph: function graph(series) {
-				var data = {};
-				series = series ? series.toLowerCase() : 'all';
+			graph: function graph(req) {
+				var ret = {
+					labels: timeGen(6),
+					id: req.id,
+					sla: null,
+					slo: null
+				},
+					sl = req.id.indexOf('sl-') === 0 ? true : false,
+					team = angular.lowercase(req.team);
+				//series = series ? series.toLowerCase() : 'all';
+				
 				// GET only
-				switch (series) {
+				switch (team) {
 				case 'customer care':
-					data.graph = {
-						labels: timeGen(6),
-						series: [
-							'Customer Care',
-							'Customer Care Admin'
-						],
-						data: [
-							randGen(200, 250, 6),
-							randGen(200, 250, 6)
-						]
-					};
+					ret.series = sl ? [
+						'Customer Care SLA',
+						'Customer Care SLO',
+						'Customer Care Admin SLA',
+						'Customer Care Admin SLO'
+					] : [
+						'Customer Care',
+						'Customer Care Admin'
+					];
+					ret.data = sl ? randGen(200, 250, 6, 4)
+									: randGen(200, 250, 6, 2);
 					break;
 				case 'noc':
-					data.graph = {
-						labels: timeGen(6),
-						series: [
-							'NOC 1',
-							'NOC 2',
-							'WSM Premier'
-						],
-						data: [
-							randGen(200, 250, 6),
-							randGen(200, 250, 6),
-							randGen(200, 250, 6)
-						]
-					};
+					ret.series = sl ? [
+						'NOC 1 SLA',
+						'NOC 1 SLO',
+						'NOC 2 SLA',
+						'NOC 2 SLO',
+						'WSM Premier SLA',
+						'WSM Premier SLO'
+					] : [
+						'NOC 1',
+						'NOC 2',
+						'WSM Premier'
+					];
+					ret.data = sl ? randGen(200, 250, 6, 6)
+									: randGen(200, 250, 6, 3);
 					break;
+				case 'soc':
+					
 				case 'all':
 					
 				default:
-					data.graph = {
-						labels: timeGen(6),
-						series: [
-							'Customer Care',
-							'NOC',
-							'SOC'
-						],
-						data: [
-							randGen(200, 250, 6),
-							randGen(200, 250, 6),
-							randGen(200, 250, 6)
-						]
-					};
+					ret.series = sl ? [
+						'Customer Care SLA',
+						'Customer Care SLO',
+						'NOC SLA',
+						'NOC SLO',
+						'SOC SLA',
+						'SOC SLO'
+					] : [
+						'Customer Care',
+						'NOC',
+						'SOC'
+					];
+					ret.data = sl ? randGen(200, 250, 6, 6)
+									: randGen(200, 250, 6, 3);
 				}
-				return data;
+				ret = sl ? separateGraphData(ret) : ret;
+				ret.totals = {
+					total: totalGraphData(ret.data),
+					sla: totalGraphData(ret.sla),
+					slo: totalGraphData(ret.slo)
+				};
+				return {graph: ret};
 			}
 		};
 		svc.scorecard = {

@@ -5,8 +5,8 @@
 		var ctrl = this,
 			config = {
 				graphs: [
-					'jeopardy',
-					'sla',
+					'sl-jeopardy',
+					'sl-exceeded',
 					'volume',
 					'escalations',
 					'ftr'
@@ -71,17 +71,31 @@
 				});
 				return totals;
 			},
-			buildGraphs = function buildGraphs(series) {
+			buildTotalsGraph = function buildTotalsGraph(graph) {
+				var tGraph = {
+					labels: graph.labels
+				};
+				// check for sla/slo
+				tGraph.data = graph.sla
+					? [graph.totals.sla, graph.totals.slo]
+					: [graph.totals.total];
+				tGraph.series = graph.sla
+					? ['SLA Totals', 'SLO Totals']
+					: ['Cumulative Totals'];
+				return tGraph;
+			},
+			buildGraphs = function buildGraphs(team) {
+				team = angular.lowercase(team);
 				config.graphs.forEach(function (v, i, a) {
 					var name = v.toLowerCase(),
-						graph = data.dashboard.graph(series).graph;
+						graph = data.dashboard
+							.graph({
+								team: team,
+								id: name
+							}).graph;
 					graphs.save(name, graph);
 					// calculate totals
-					graphs.save((name + 'Total'), {
-						data: [calculateTotals(graph.data)],
-						labels: graph.labels,
-						series: ['Cumulative Totals']
-					});
+					graphs.save((name + 'Total'), buildTotalsGraph(graph));
 				});
 			},
 			init = function init() {

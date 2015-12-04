@@ -22,10 +22,13 @@ h4 {font-size: 120%;}
 .capitalize {text-transform: capitalize;}
 .small-caps {font-variant: small-caps;}
 .percentage::after {content:'%';}
-/* MD input lables */
+/* Material Design fixes */
 md-input-container label {
 	font-variant: small-caps;
 	text-transform: capitalize;
+}
+md-dialog-actions.md-fix {
+	border-top: 1px solid rgba(0,0,0,0.12);
 }
 /* special text styling */
 .text-stroke-webkit {
@@ -227,7 +230,10 @@ md-autocomplete.pad-fix md-input-container {
 	resize: both;
 	text-align: left;
 }
-.scorecard thead, .scorecard tfoot {
+.scorecard tfoot {
+	font-weight: 700;
+}
+.scorecard thead {
 	background: linear-gradient(#777777, #444444);
 	color: #FFFFFF;
 	text-shadow: 0 1px 0 #000000;
