@@ -147,7 +147,7 @@
 						'Customer Care',
 						'Customer Care Admin'
 					];
-					ret.data = sl ? randGen(200, 250, 6, 4)
+					ret.data = sl ? randGen(100, 150, 6, 4)
 									: randGen(200, 250, 6, 2);
 					break;
 				case 'noc':
@@ -163,7 +163,7 @@
 						'NOC 2',
 						'WSM Premier'
 					];
-					ret.data = sl ? randGen(200, 250, 6, 6)
+					ret.data = sl ? randGen(100, 150, 6, 6)
 									: randGen(200, 250, 6, 3);
 					break;
 				case 'soc':
@@ -183,7 +183,7 @@
 						'NOC',
 						'SOC'
 					];
-					ret.data = sl ? randGen(200, 250, 6, 6)
+					ret.data = sl ? randGen(100, 150, 6, 6)
 									: randGen(200, 250, 6, 3);
 				}
 				ret = sl ? separateGraphData(ret) : ret;
