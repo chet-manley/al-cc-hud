@@ -3,9 +3,22 @@
 	/* create directive */
 	function flexGraph(graphs) {
 		var Controller = function Controller() {
-			var ctrl = this;
+			var ctrl = this,
+				options = function setOptions() {
+					var opts = {};
+					switch (ctrl.type.toLowerCase()) {
+					case 'line':
+						opts = {
+							bezierCurve: false,
+							datasetFill: false
+						};
+						break;
+					}
+					return opts;
+				};
 			ctrl.graph = graphs.get();
 			ctrl.type = ctrl.type || 'Line';
+			ctrl.options = ctrl.graph[ctrl.name].options || options();
 		};
 		
 		return {
