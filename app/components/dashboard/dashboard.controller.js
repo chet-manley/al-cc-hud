@@ -33,14 +33,14 @@
 			updateGraph = function updateGraph(graph) {
 				
 			},
-			showGraph = function showGraph(event, graph, header) {
+			showGraphModal = function showGraphModal(event, graph, header) {
 				$mdDialog.show({
 					templateUrl: 'app/components/dashboard/graph.modal.htm',
 					controller: 'base.modal',
 					controllerAs: 'ctrl',
 					locals: {
 						name: graph,
-						header: header
+						header: ctrl.team.name + ' ' + header
 					},
 					bindToController: true,
 					parent: angular.element(document.body),
@@ -113,7 +113,7 @@
 				updateHeader();
 				// public methods
 				ctrl.changeTeam = changeTeam;
-				ctrl.showGraph = showGraph;
+				ctrl.showGraph = showGraphModal;
 			};
 		// this controller auto-inits
 		init();
