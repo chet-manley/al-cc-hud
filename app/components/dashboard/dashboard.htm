@@ -18,8 +18,16 @@
 			<header class="md-toolbar-tools"><h1>Tickets SLA/SLO Jeopardy</h1></header>
 		</md-toolbar>
 		<md-content layout="row" layout-gt-md="column">
-			<flex-graph flex graph-name="sl-jeopardyTotal" ng-click="ctrl.showGraph($event,'sl-jeopardyTotal','total tickets SLA/SLO jeopardy')"></flex-graph>
-			<flex-graph flex graph-name="sl-jeopardy" ng-click="ctrl.showGraph($event,'sl-jeopardy','tickets SLA/SLO jeopardy')"></flex-graph>
+			<flex-graph flex
+						graph-expand
+						graph-name="sl-jeopardyTotal"
+						graph-header="{{ctrl.team.name}}: total tickets SLA/SLO jeopardy">
+			</flex-graph>
+			<flex-graph flex
+						graph-expand
+						graph-name="sl-jeopardy"
+						graph-header="{{ctrl.team.name}}: tickets SLA/SLO jeopardy">
+			</flex-graph>
 		</md-content>
 	</md-card>
 	<md-card flex class="graph-column">
@@ -27,8 +35,16 @@
 			<header class="md-toolbar-tools"><h2>Tickets SLA/SLO Exceeded</h2></header>
 		</md-toolbar>
 		<md-content layout="row" layout-gt-md="column">
-			<flex-graph flex graph-name="sl-exceededTotal" ng-click="ctrl.showGraph($event,'sl-exceededTotal','total tickets SLA/SLO exceeded')"></flex-graph>
-			<flex-graph flex graph-name="sl-exceeded" ng-click="ctrl.showGraph($event,'sl-exceeded','tickets SLA/SLO exceeded')"></flex-graph>
+			<flex-graph flex
+						graph-expand
+						graph-name="sl-exceededTotal"
+						graph-header="{{ctrl.team.name}}: total tickets SLA/SLO exceeded">
+			</flex-graph>
+			<flex-graph flex
+						graph-expand
+						graph-name="sl-exceeded"
+						graph-header="{{ctrl.team.name}}: tickets SLA/SLO exceeded">
+			</flex-graph>
 		</md-content>
 	</md-card>
 </section>
@@ -39,8 +55,16 @@
 			<header class="md-toolbar-tools"><h2>Customer Escalations</h2></header>
 		</md-toolbar>
 		<md-content layout="row" layout-gt-md="column">
-			<flex-graph flex graph-name="escalationsTotal" ng-click="ctrl.showGraph($event,'escalationsTotal','total ticket escalations')"></flex-graph>
-			<flex-graph flex graph-name="escalations" ng-click="ctrl.showGraph($event,'escalations','ticket escalations')"></flex-graph>
+			<flex-graph flex
+						graph-expand
+						graph-name="escalationsTotal"
+						graph-header="{{ctrl.team.name}}: total ticket escalations">
+			</flex-graph>
+			<flex-graph flex
+						graph-expand
+						graph-name="escalations"
+						graph-header="{{ctrl.team.name}}: ticket escalations">
+			</flex-graph>
 		</md-content>
 	</md-card>
 	<md-card flex class="graph-column">
@@ -48,8 +72,16 @@
 			<header class="md-toolbar-tools"><h2>Ticket Volume</h2></header>
 		</md-toolbar>
 		<md-content layout="row" layout-gt-md="column">
-			<flex-graph flex graph-name="volumeTotal" ng-click="ctrl.showGraph($event,'volumeTotal','total ticket volume')"></flex-graph>
-			<flex-graph flex graph-name="volume" ng-click="ctrl.showGraph($event,'volume','ticket volume')"></flex-graph>
+			<flex-graph flex
+						graph-expand
+						graph-name="volumeTotal"
+						graph-header="{{ctrl.team.name}}: total ticket volume">
+			</flex-graph>
+			<flex-graph flex
+						graph-expand
+						graph-name="volume"
+						graph-header="{{ctrl.team.name}}: ticket volume">
+			</flex-graph>
 		</md-content>
 	</md-card>
 </section>
@@ -60,8 +92,16 @@
 			<header class="md-toolbar-tools"><h2>First Touch Resolve</h2></header>
 		</md-toolbar>
 		<md-content layout="row" layout-gt-md="column">
-			<flex-graph flex graph-name="ftrTotal" ng-click="ctrl.showGraph($event,'ftrTotal','first touch resolve total')"></flex-graph>
-			<flex-graph flex graph-name="ftr" ng-click="ctrl.showGraph($event,'ftr','first touch resolve')"></flex-graph>
+			<flex-graph flex
+						graph-expand
+						graph-name="ftrTotal"
+						graph-header="{{ctrl.team.name}}: total tickets first touch resolved">
+			</flex-graph>
+			<flex-graph flex
+						graph-expand
+						graph-name="ftr"
+						graph-header="{{ctrl.team.name}}: tickets first touch resolved">
+			</flex-graph>
 		</md-content>
 	</md-card>
 </section>
