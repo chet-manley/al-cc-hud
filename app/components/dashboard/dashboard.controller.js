@@ -1,7 +1,7 @@
 (function (angular, undefined) {
 	'use strict';
 	/* create controller */
-	function DashboardController($routeParams, $location, $interval, $mdDialog, data, graphs) {
+	function DashboardController($routeParams, $location, $interval, data, graphs) {
 		var ctrl = this,
 			config = {
 				graphs: [
@@ -32,21 +32,6 @@
 			},
 			updateGraph = function updateGraph(graph) {
 				
-			},
-			showGraphModal = function showGraphModal(event, graph, header) {
-				$mdDialog.show({
-					templateUrl: 'app/components/dashboard/graph.modal.htm',
-					controller: 'base.modal',
-					controllerAs: 'ctrl',
-					locals: {
-						name: graph,
-						header: ctrl.team.name + ' ' + header
-					},
-					bindToController: true,
-					parent: angular.element(document.body),
-					targetEvent: event,
-					clickOutsideToClose: true
-				});
 			},
 			changeTeam = function changeTeam(newTeam) {
 				// cache new team
@@ -113,7 +98,6 @@
 				updateHeader();
 				// public methods
 				ctrl.changeTeam = changeTeam;
-				ctrl.showGraph = showGraphModal;
 			};
 		// this controller auto-inits
 		init();
@@ -133,7 +117,6 @@
 		'$routeParams',
 		'$location',
 		'$interval',
-		'$mdDialog',
 		'data',
 		'graphs'
 	];
