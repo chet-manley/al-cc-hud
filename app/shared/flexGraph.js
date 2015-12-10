@@ -15,10 +15,11 @@
 						break;
 					}
 					return opts;
+					// request graphs
+					ctrl.graphs = graphs.get();
+					ctrl.options = ctrl.graphs[ctrl.name].options || options();
 				};
-			ctrl.graph = graphs.get();
 			ctrl.type = ctrl.type || 'Line';
-			ctrl.options = ctrl.graph[ctrl.name].options || options();
 		};
 		
 		return {
