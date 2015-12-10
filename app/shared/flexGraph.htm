@@ -8,3 +8,15 @@
 		chart-legend="true"
 		chart-options="graphCtrl.options">
 </canvas>
+<md-button class="md-fab expand-btn"
+		   ng-click="graphCtrl.expand($event)"
+		   ng-if="expandable"
+		   aria-label="close dialog"
+		   ng-init="growShrinkSize=28"
+		   ng-mouseover="growShrinkSize=36"
+		   ng-mouseout="growShrinkSize=28">
+	<ng-md-icon class="md-fix"
+				icon="settings_overscan"
+				size="{{growShrinkSize}}">
+	</ng-md-icon>
+</md-button>
