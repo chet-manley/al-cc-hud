@@ -30,6 +30,16 @@ md-input-container label {
 md-dialog-actions.md-fix {
 	border-top: 1px solid rgba(0,0,0,0.12);
 }
+md-autocomplete.md-fix md-input-container {
+	padding-bottom: 2px;
+}
+/*
+ng-md-icon.md-fix {
+	display: inline-block;
+	line-height: 1;
+	vertical-align: middle;
+}
+*/
 /* special text styling */
 .text-stroke-webkit {
 	text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
@@ -39,6 +49,51 @@ md-dialog-actions.md-fix {
 .text-stroke-fallback {
 	color: #FFFFFF;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.6), -1px -1px 1px rgba(0,0,0,0.6), 1px -1px 1px rgba(0,0,0,0.6), -1px 1px 1px rgba(0,0,0,0.6), 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+/* angular-chart */
+.chart-legend,
+.bar-legend,
+.line-legend,
+.pie-legend,
+.radar-legend,
+.polararea-legend,
+.doughnut-legend {
+	list-style-type: none;
+	margin-top: 5px;
+	text-align: center;
+	padding-left: 0;
+}
+.chart-legend li,
+.bar-legend li,
+.line-legend li,
+.pie-legend li,
+.radar-legend li,
+.polararea-legend li,
+.doughnut-legend li {
+	display: inline-block;
+	white-space: nowrap;
+	position: relative;
+	margin-bottom: 4px;
+	border-radius: 5px;
+	padding: 2px 8px 2px 28px;
+	font-size: smaller;
+	cursor: default;
+}
+.chart-legend li span,
+.bar-legend li span,
+.line-legend li span,
+.pie-legend li span,
+.radar-legend li span,
+.polararea-legend li span,
+.doughnut-legend li span {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 20px;
+	height: 20px;
+	border-radius: 5px;
 }
 
 /* app body */
@@ -152,61 +207,39 @@ menu[type="channels"] .emergency-red::before {
 	50% {background-color: #FF0000;}
 }
 
-/* angular-chart */
-.chart-legend,
-.bar-legend,
-.line-legend,
-.pie-legend,
-.radar-legend,
-.polararea-legend,
-.doughnut-legend {
-	list-style-type: none;
-	margin-top: 5px;
-	text-align: center;
-	padding-left: 0;
-}
-.chart-legend li,
-.bar-legend li,
-.line-legend li,
-.pie-legend li,
-.radar-legend li,
-.polararea-legend li,
-.doughnut-legend li {
-	display: inline-block;
-	white-space: nowrap;
-	position: relative;
-	margin-bottom: 4px;
-	border-radius: 5px;
-	padding: 2px 8px 2px 28px;
-	font-size: smaller;
-	cursor: default;
-}
-.chart-legend li span,
-.bar-legend li span,
-.line-legend li span,
-.pie-legend li span,
-.radar-legend li span,
-.polararea-legend li span,
-.doughnut-legend li span {
-	display: block;
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 20px;
-	height: 20px;
-	border-radius: 5px;
-}
-/* center canvas in wrapper */
-canvas {
-	display: block;
-	margin: 2vh auto;
-	width: 100%;
-}
+
 /* graph containers */
 .graph-column {
 	margin: 3px;
 	padding: 2px;
 }
+/* custom graph directive */
+flex-graph {
+	position: relative;
+}
+/* graph expand button */
+flex-graph button.md-fab.expand-btn {
+	margin: 0;
+	opacity: 0.15;
+	position: absolute;
+	right: 2px;
+	top: 2px;
+}
+.expand-btn ng-md-icon {
+	fill: #000000;
+}
+flex-graph button.md-fab.expand-btn:hover,
+flex-graph button.md-fab.expand-btn:hover ng-md-icon {
+	fill: #FFFFFF;
+	opacity: 1.0;
+}
+/* center chart canvas in wrapper */
+.chart-container > canvas {
+	display: block;
+	margin: 1vh auto;
+	width: 100%;
+}
+
 
 /** scorecards view **/
 /* top form controls */
@@ -215,10 +248,6 @@ canvas {
 	font-weight: 700;
 	font-size: 115%;
 	margin-right: 10px;
-}
-/* fix padding mis-alignment */
-md-autocomplete.pad-fix md-input-container {
-	padding-bottom: 2px;
 }
 
 /* scorecard table */
