@@ -1,7 +1,12 @@
 (function (window, angular, undefined) {
 	'use strict';
 	/* create our app module */
-	angular.module('alccDash', ['ngRoute', 'ngMaterial', 'chart.js']);
+	angular.module('alccDash', [
+		'ngRoute',
+		'ngMaterial',
+		'ngMdIcons',
+		'chart.js'
+	]);
 	
 	/* create our app routes */
 	angular.module('alccDash')
